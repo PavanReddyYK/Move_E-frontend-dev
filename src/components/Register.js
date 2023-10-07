@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { SignUpSchema } from "../schemas/SignUpSchema";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {FcGoogle} from "react-icons/fc";
 
 const initialValues = {
   name: "",
@@ -59,9 +60,12 @@ const Register = () => {
     navigate("/");
   };
   return (
-    <div className="container">
-      <div className=" d-flex align-items-center justify-content-center min-vh-100 border">
-        <div className="border p-4 m-4" style={{ minWidth: "360px" }}>
+    <div
+      className="container"
+      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)" }}
+    >
+      <div className=" d-flex align-items-center justify-content-center min-vh-100">
+        <div className=" p-4 m-4" style={{ minWidth: "360px" }}>
           <div className="mb-4 text-center">
             <h4>Registration</h4>
           </div>
@@ -235,31 +239,36 @@ const Register = () => {
                 ) : null}
               </div>
             </div>
-            <div className="d-grid mt-4 align-items-center  justify-content-center ">
+            <div className="d-grid mt-2 align-items-center  justify-content-center ">
               <button type="submit" className="btn btn-outline-secondary mb-2">
                 Submit
               </button>
-              <>
-                Already have an account?{" "}
-                <a
-                  onClick={handleSignInClick}
-                  className="text-decoration-none text-center"
-                >
-                  <>
-                    <strong>SingnIn here</strong>
-                  </>
-                </a>
-              </>
-              <>
-                <div className="container d-flex justify-content-center align-item-center">
-                  <h5>SignIn through google account??</h5>{" "}
-                  <button type="submit" onClick={SignUpGoogle}>
-                    SignIn{" "}
-                  </button>
-                </div>
-              </>
             </div>
           </form>
+          <div className="d-grid align-items-center justify-content-center mb-0">
+            <div className="text-center">
+              Already have an account? SignIn{" "}
+              <a
+                onClick={handleSignInClick}
+                className="text-decoration-none text-center"
+              >
+                <strong>here</strong>
+              </a>
+              <div className="mb-1">or</div>
+            </div>
+            <div className="">
+              <div className=" d-flex justify-content-center align-item-center">
+                {/* SignUp through google account?{" "} */}
+                <button
+                  className="btn btn-outline-secondary"
+                  type="submit"
+                  onClick={SignUpGoogle}
+                >
+                  <FcGoogle/>oogle
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

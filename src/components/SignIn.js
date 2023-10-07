@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { SignInSchema } from "../schemas/SignInSchema";
+import {FcGoogle} from "react-icons/fc";
+
 
 const initialValues = {
   email: "",
@@ -37,6 +39,18 @@ const SignIn = () => {
         action.resetForm();
       },
     });
+    const SignUpGoogle = async () => {
+      await axios
+        .post(
+          `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/googleSignUp`
+        )
+        .then((res) => {
+          window.location.href = `${res.data}`;
+        })
+        .catch((err) => {
+          console.error("Error:", err);
+        });
+    };
 
   const handleToggle = () => {
     // dispatch(toggleAction())
@@ -45,10 +59,11 @@ const SignIn = () => {
 
   return (
     <div
-      className="container d-flex justify-content-center align-items-center min-vh-100 border"
-      style={{ backgroundColor: "#f0f0f0" }}
+      className="container d-flex justify-content-center align-items-center min-vh-100"
+      // style={{ backgroundColor: "#f0f0f0" }}
+      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)" }}
     >
-      <div className="border p-4" style={{ backgroundColor: "#f6f6f9" }}>
+      <div className="p-4" style={{ backgroundColor: "#bccaf136" }}>
         <div className="mb-3">
           <div className="text-center">
             <h4 className="mb-3">Login Page</h4>
@@ -96,7 +111,9 @@ const SignIn = () => {
               <button type="submit" className="btn btn-outline-success">
                 SignIn
               </button>
-              <h6>
+              <div className="d-grid align-items-center justify-content-center mb-0">
+            <div className="text-center">
+              <div>
                 click{" "}
                 <a
                   onClick={handleToggle}
@@ -105,7 +122,22 @@ const SignIn = () => {
                   <strong>here</strong>
                 </a>{" "}
                 to signUP
-              </h6>
+              </div>
+              <div className="mb-1">or</div>
+            </div>
+            <div className="">
+              <div className=" d-flex justify-content-center align-item-center">
+                {/* SignUp through google account?{" "} */}
+                <button
+                  className="btn btn-outline-secondary"
+                  type="submit"
+                  onClick={SignUpGoogle}
+                >
+                  <FcGoogle/>oogle
+                </button>
+              </div>
+            </div>
+          </div>
             </div>
             <div className="mb-3"></div>
           </form>
