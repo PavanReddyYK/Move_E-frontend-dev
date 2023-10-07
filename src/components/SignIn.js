@@ -1,10 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { SignInSchema } from "../schemas/SignInSchema";
-import {FcGoogle} from "react-icons/fc";
-
+import { FcGoogle } from "react-icons/fc";
 
 const initialValues = {
   email: "",
@@ -12,7 +11,6 @@ const initialValues = {
 };
 
 const SignIn = () => {
-
   const navigate = useNavigate();
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
@@ -39,23 +37,23 @@ const SignIn = () => {
         action.resetForm();
       },
     });
-    const SignUpGoogle = async () => {
-      await axios
-        .post(
-          `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/googleSignUp`
-        )
-        .then((res) => {
-          window.location.href = `${res.data}`;
-        })
-        .catch((err) => {
-          console.error("Error:", err);
-        });
-    };
 
-  const handleToggle = () => {
-    // dispatch(toggleAction())
-    navigate("/signUp");
+  const SignUpGoogle = async () => {
+    await axios
+      .post(
+        `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/googleSignUp`
+      )
+      .then((res) => {
+        window.location.href = `${res.data}`;
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
   };
+  // const handleToggle = () => {
+  //   // dispatch(toggleAction())
+  //   navigate("/signUp");
+  // };
 
   return (
     <div
@@ -104,7 +102,9 @@ const SignIn = () => {
                 placeholder="enter pass"
               />
               {errors.password && touched.password ? (
-                <h6 className="form-error text-danger mb-0">{errors.password}</h6>
+                <h6 className="form-error text-danger mb-0">
+                  {errors.password}
+                </h6>
               ) : null}
             </div>
             <div className="mb-3 d-grid gap-2">
@@ -112,32 +112,29 @@ const SignIn = () => {
                 SignIn
               </button>
               <div className="d-grid align-items-center justify-content-center mb-0">
-            <div className="text-center">
-              <div>
-                click{" "}
-                <a
-                  onClick={handleToggle}
-                  className="text-decoration-none"
-                >
-                  <strong>here</strong>
-                </a>{" "}
-                to signUP
+                <div className="text-center">
+                  <div className="text-center text-decoration-none">
+                    Don't have an account?{" "}
+                    <Link to="/signUp" style={{ color: "#4047f3" }}>
+                      SignUp Here!
+                    </Link>
+                  </div>
+                  <div className="mb-1">or</div>
+                </div>
+                <div className="">
+                  <div className=" d-flex justify-content-center align-item-center">
+                    {/* SignUp through google account?{" "} */}
+                    <button
+                      className="btn btn-outline-secondary"
+                      type="submit"
+                      onClick={SignUpGoogle}
+                    >
+                      <FcGoogle />
+                      oogle
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="mb-1">or</div>
-            </div>
-            <div className="">
-              <div className=" d-flex justify-content-center align-item-center">
-                {/* SignUp through google account?{" "} */}
-                <button
-                  className="btn btn-outline-secondary"
-                  type="submit"
-                  onClick={SignUpGoogle}
-                >
-                  <FcGoogle/>oogle
-                </button>
-              </div>
-            </div>
-          </div>
             </div>
             <div className="mb-3"></div>
           </form>

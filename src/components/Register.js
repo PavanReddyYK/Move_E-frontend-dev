@@ -1,9 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../schemas/SignUpSchema";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {FcGoogle} from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
 
 const initialValues = {
   name: "",
@@ -16,7 +16,7 @@ const initialValues = {
 };
 
 const Register = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -41,7 +41,7 @@ const Register = () => {
           .catch((err) => {
             console.log("Error Response:---", err.response);
           });
-        // action.resetForm();
+        action.resetForm();
       },
     });
   const SignUpGoogle = async () => {
@@ -56,9 +56,9 @@ const Register = () => {
         console.error("Error:", err);
       });
   };
-  const handleSignInClick = () => {
-    navigate("/");
-  };
+  // const handleSignInClick = () => {
+  //   navigate("/");
+  // };
   return (
     <div
       className="container"
@@ -248,23 +248,20 @@ const Register = () => {
           <div className="d-grid align-items-center justify-content-center mb-0">
             <div className="text-center">
               Already have an account? SignIn{" "}
-              <a
-                onClick={handleSignInClick}
-                className="text-decoration-none text-center"
-              >
-                <strong>here</strong>
-              </a>
+              <Link to="/" className="">
+                here
+              </Link>
               <div className="mb-1">or</div>
             </div>
             <div className="">
               <div className=" d-flex justify-content-center align-item-center">
-                {/* SignUp through google account?{" "} */}
                 <button
                   className="btn btn-outline-secondary"
                   type="submit"
                   onClick={SignUpGoogle}
                 >
-                  <FcGoogle/>oogle
+                  <FcGoogle />
+                  oogle
                 </button>
               </div>
             </div>
