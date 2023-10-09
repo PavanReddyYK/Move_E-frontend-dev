@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { ForgotPasswordSchema } from "../schemas/ForgotPasswordSchema";
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
             console.log(res.data.message);
             if (res.status === 200) {
               const email = values.email
-              navigate(`/auth/signIn/verifyOtp?${email}`);
+              navigate(`/auth/signIn/verifyOtp/${email}`);
             } else {
               console.error("Login failed:", res.data.message);
             }

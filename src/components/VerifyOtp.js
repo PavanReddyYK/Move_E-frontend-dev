@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useRoutes } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { verifyOtpSchema } from "../schemas/verifyOtpSchema";
@@ -8,6 +8,7 @@ import { verifyOtpSchema } from "../schemas/verifyOtpSchema";
 
 const VerifyOtp = () => {
   const {email} = useParams()
+  
   const initialValues = {
     email: email,
     otp: "",
@@ -31,8 +32,7 @@ const VerifyOtp = () => {
           .then((res) => {
             console.log(res.data.message);
             if (res.status === 200) {
-              sessionStorage.setItem("token", res.data.token);
-              console.log("token", res.data.token);
+              console.log("token", res.data.message);
             } else {
               console.error("Login failed:", res.data.message);
             }
@@ -52,13 +52,13 @@ const VerifyOtp = () => {
       <div className="p-4" style={{ backgroundColor: "#bccaf136" }}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
-            <h4 className="mb-3">Verify OTP"</h4>
+            <h4 className="mb-3">Verify OTP</h4> 
           </div>
           <form onSubmit={handleSubmit}>
             {/* ---------------------------------EMAIL-------------------- */}
             <div className="mb-3">
               <label htmlFor="email" className="form-label d-block">
-                email
+                Email
               </label>
               <input
                 type="text"
@@ -78,7 +78,7 @@ const VerifyOtp = () => {
             {/* ---------------------------------OTP-------------------- */}
             <div className="mb-3">
               <label htmlFor="otp" className="form-label d-block">
-                email
+                OTP
               </label>
               <input
                 type="text"
@@ -98,7 +98,7 @@ const VerifyOtp = () => {
             {/* ---------------------------------PASSWORD-------------------- */}
             <div className="mb-3">
               <label htmlFor="new_password" className="form-label">
-                password
+                New Password
               </label>
               <input
                 type="password"
@@ -120,7 +120,7 @@ const VerifyOtp = () => {
             {/* ---------------------------------CONFIRM_PASSWORD-------------------- */}
             <div className="mb-3">
               <label htmlFor="confirm_new_password" className="form-label">
-                password
+                Confirm New Password
               </label>
               <input
                 type="password"

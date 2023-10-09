@@ -11,9 +11,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-            <Route path="" element={<SignIn />} />
+            <Route path="/" element={<SignIn />} />
             <Route path="/auth/signIn/forgotPassword" element={<ForgotPassword />} />
-            <Route path="/auth/signIn/verifyOtp" element={<VerifyOtp/>} />
+            <Route path="/auth/signIn/verifyOtp/:email" element={<VerifyOtp/>} />
             <Route path="/auth/signUp" element={<Register />} />
             <Route path="/dash" element={<Dash />} />
             </Routes>
