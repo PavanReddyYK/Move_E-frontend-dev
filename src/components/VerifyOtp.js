@@ -1,28 +1,31 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
-import { SignInSchema } from "../schemas/SignInSchema";
-import { FcGoogle } from "react-icons/fc";
+import { verifyOtpSchema } from "../schemas/verifyOtpSchema";
 
-const initialValues = {
-  email: "",
-  password: "",
-};
 
-const SignIn = () => {
+const VerifyOtp = () => {
+  const {email} = useParams()
+  const initialValues = {
+    email: email,
+    otp: "",
+    new_password: "",
+    confirm_new_password: "",
+  };
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
-      validationSchema: SignInSchema,
+      validationSchema: verifyOtpSchema,
       onSubmit: (values, action) => {
         axios
           .post(
-            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/LogInUser`,
+            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/verifyOtp`,
             {
               email: values.email,
-              password: values.password,
+              otp: values.otp,
+              new_password: values.new_password,
             }
           )
           .then((res) => {
@@ -41,19 +44,6 @@ const SignIn = () => {
       },
     });
 
-  const SignUpGoogle = async () => {
-    await axios
-      .post(
-        `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/googleSignUp`
-      )
-      .then((res) => {
-        window.location.href = `${res.data}`;
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-      });
-  };
-
   return (
     <div
       className="container d-flex justify-content-center align-items-center min-vh-100"
@@ -62,7 +52,7 @@ const SignIn = () => {
       <div className="p-4" style={{ backgroundColor: "#bccaf136" }}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
-            <h4 className="mb-3">Login Page</h4>
+            <h4 className="mb-3">Verify OTP"</h4>
           </div>
           <form onSubmit={handleSubmit}>
             {/* ---------------------------------EMAIL-------------------- */}
@@ -85,25 +75,67 @@ const SignIn = () => {
                 <h6 className="form-error text-danger mb-0">{errors.email}</h6>
               ) : null}
             </div>
+            {/* ---------------------------------OTP-------------------- */}
+            <div className="mb-3">
+              <label htmlFor="otp" className="form-label d-block">
+                email
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="otp"
+                name="otp"
+                autoComplete="off"
+                value={values.otp}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="enter OTP"
+              />
+              {errors.otp && touched.otp ? (
+                <h6 className="form-error text-danger mb-0">{errors.otp}</h6>
+              ) : null}
+            </div>
             {/* ---------------------------------PASSWORD-------------------- */}
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
+              <label htmlFor="new_password" className="form-label">
                 password
               </label>
               <input
                 type="password"
                 className="form-control"
-                id="password"
-                name="password"
+                id="new_password"
+                name="new_password"
                 autoComplete="off"
-                value={values.password}
+                value={values.new_password}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                placeholder="enter pass"
+                placeholder="enter new password"
               />
-              {errors.password && touched.password ? (
+              {errors.new_password && touched.new_password ? (
                 <h6 className="form-error text-danger mb-0">
-                  {errors.password}
+                  {errors.new_password}
+                </h6>
+              ) : null}
+            </div>
+            {/* ---------------------------------CONFIRM_PASSWORD-------------------- */}
+            <div className="mb-3">
+              <label htmlFor="confirm_new_password" className="form-label">
+                password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="confirm_new_password"
+                name="confirm_new_password"
+                autoComplete="off"
+                value={values.confirm_new_password}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="confirm new password"
+              />
+              {errors.confirm_new_password && touched.confirm_new_password ? (
+                <h6 className="form-error text-danger mb-0">
+                  {errors.confirm_new_password}
                 </h6>
               ) : null}
             </div>
@@ -115,29 +147,8 @@ const SignIn = () => {
             <div className="mb-3"></div>
           </form>
           <div className="">
-            <div className="d-grid  align-items-center justify-content-center mb-0">
-              <div className="text-center">
-                <div className="text-center text-decoration-none">
-                  Don't have an account?{" "}
-                  <Link to="/auth/signUp" style={{ color: "#4047f3" }}>
-                    SignUp Here!
-                  </Link>
-                </div>
-                <div className="mb-1">or</div>
-              </div>
-            </div>
             <div className="d-flex justify-content-center align-item-center">
-              <button
-                className="btn btn-outline-secondary"
-                type="submit"
-                onClick={SignUpGoogle}
-              >
-                <FcGoogle />
-                oogle
-              </button>
-            </div>
-            <div className="d-flex justify-content-center align-item-center">
-              <Link to="/auth/signIn/forgotPassword">forgot Password?</Link>
+              <Link to="/">Back to SignIn??</Link>
             </div>
           </div>
         </div>
@@ -145,4 +156,4 @@ const SignIn = () => {
     </div>
   );
 };
-export default SignIn;
+export default VerifyOtp;

@@ -8,12 +8,9 @@ export const SignUpSchema = Yup.object({
   email: Yup.string()
     .email("email must be a valid")
     .required("please enter your email"),
-  age: Yup.number("must be a number")
-    .required("please enter your age"),
-  state: Yup.string("must be a string")
-    .required("please enter state"),
-  country: Yup.string()
-    .required("please enter country"),
+  age: Yup.number("must be a number").required("please enter your age"),
+  state: Yup.string("must be a string").required("please enter state"),
+  country: Yup.string().required("please enter country"),
   password: Yup.string()
     .min(4, "password should minimum of 4 characters")
     .required("please enter password"),

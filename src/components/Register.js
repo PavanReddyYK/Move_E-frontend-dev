@@ -65,7 +65,10 @@ const Register = () => {
       style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)" }}
     >
       <div className=" d-flex align-items-center justify-content-center min-vh-100">
-        <div className=" p-4 m-4" style={{ minWidth: "360px" }}>
+        <div
+          className=" p-4 m-4"
+          style={{ minWidth: "300px", backgroundColor: "#bccaf136" }}
+        >
           <div className="mb-4 text-center">
             <h4>Registration</h4>
           </div>
@@ -240,31 +243,37 @@ const Register = () => {
               </div>
             </div>
             <div className="d-grid mt-2 align-items-center  justify-content-center ">
-              <button type="submit" className="btn btn-outline-secondary mb-2">
+              <button
+                type="submit"
+                style={{ width: "250px" }}
+                className="btn btn-outline-dark mb-2"
+              >
                 Submit
               </button>
             </div>
           </form>
           <div className="d-grid align-items-center justify-content-center mb-0">
             <div className="text-center">
-              Already have an account? SignIn{" "}
+              Already have an account?{" "}
               <Link to="/" className="">
-                here
+                SignIn here
               </Link>
               <div className="mb-1">or</div>
             </div>
             <div className="">
               <div className=" d-flex justify-content-center align-item-center">
                 <button
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline-dark"
                   type="submit"
                   onClick={SignUpGoogle}
+                  style={{ width: "250px", color: "" }}
                 >
                   <FcGoogle />
                   oogle
                 </button>
               </div>
             </div>
+            <div></div>
           </div>
         </div>
       </div>
