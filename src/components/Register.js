@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../schemas/SignUpSchema";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 
@@ -16,7 +16,6 @@ const initialValues = {
 };
 
 const Register = () => {
-  // const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -56,9 +55,7 @@ const Register = () => {
         console.error("Error:", err);
       });
   };
-  // const handleSignInClick = () => {
-  //   navigate("/");
-  // };
+
   return (
     <div
       className="container"
@@ -273,7 +270,6 @@ const Register = () => {
                 </button>
               </div>
             </div>
-            <div></div>
           </div>
         </div>
       </div>

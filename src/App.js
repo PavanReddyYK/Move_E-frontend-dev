@@ -15,7 +15,7 @@ function App() {
             <Route path="/auth/signIn/forgotPassword" element={<ForgotPassword />} />
             <Route path="/auth/signIn/verifyOtp/:email" element={<VerifyOtp/>} />
             <Route path="/auth/signUp" element={<Register />} />
-            <Route path="/dash" element={<Dash />} />
+            <Route path="/dash/:token" element={<Dash />} />
             </Routes>
       </BrowserRouter>
     </div>

@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
-import { Link, useParams, useRoutes } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { verifyOtpSchema } from "../schemas/verifyOtpSchema";
 
-
 const VerifyOtp = () => {
-  const {email} = useParams()
-  
+  const { email } = useParams();
+  const navigate = useNavigate();
+
   const initialValues = {
     email: email,
     otp: "",
@@ -30,15 +30,15 @@ const VerifyOtp = () => {
             }
           )
           .then((res) => {
-            console.log(res.data.message);
-            if (res.status === 200) {
-              console.log("token", res.data.message);
-            } else {
-              console.error("Login failed:", res.data.message);
-            }
+            console.log("Response:----", res.data.message);
+            navigate(`/dash/${res.data.token}`);
           })
           .catch((err) => {
-            console.error("Axios error::::", err.message);
+            console.error(
+              "Response Error!!!",
+              err.response.statusText,
+              err.response.data
+            );
           });
         action.resetForm();
       },
@@ -52,7 +52,7 @@ const VerifyOtp = () => {
       <div className="p-4" style={{ backgroundColor: "#bccaf136" }}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
-            <h4 className="mb-3">Verify OTP</h4> 
+            <h4 className="mb-3">Verify OTP</h4>
           </div>
           <form onSubmit={handleSubmit}>
             {/* ---------------------------------EMAIL-------------------- */}

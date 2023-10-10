@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { SignInSchema } from "../schemas/SignInSchema";
@@ -12,6 +12,7 @@ const initialValues = {
 };
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -19,7 +20,7 @@ const SignIn = () => {
       onSubmit: (values, action) => {
         axios
           .post(
-            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/LogInUser`,
+            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/logInUser`,
             {
               email: values.email,
               password: values.password,
@@ -27,15 +28,15 @@ const SignIn = () => {
           )
           .then((res) => {
             console.log(res.data.message);
-            if (res.status === 200) {
-              sessionStorage.setItem("token", res.data.token);
-              console.log("token", res.data.token);
-            } else {
-              console.error("Login failed:", res.data.message);
-            }
+            sessionStorage.setItem("token", res.data.token);
+            navigate(`/dash/${res.data.token}`);
           })
           .catch((err) => {
-            console.error("Axios error::::", err.message);
+            console.error(
+              "Response Error!!!",
+              err.response.statusText,
+              err.response.data
+            );
           });
         action.resetForm();
       },
@@ -50,7 +51,7 @@ const SignIn = () => {
         window.location.href = `${res.data}`;
       })
       .catch((err) => {
-        console.error("Error:", err);
+        console.error("Error:", err.message);
       });
   };
 
