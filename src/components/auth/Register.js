@@ -59,12 +59,12 @@ const Register = () => {
   return (
     <div
       className="container"
-      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)" }}
+      style={{ background: "linear-gradient(to bottom, #cfe9e91a, #f0f0f84d)" }}
     >
       <div className=" d-flex align-items-center justify-content-center min-vh-100">
         <div
           className=" p-4 m-4"
-          style={{ minWidth: "300px", backgroundColor: "#bccaf136" }}
+          style={{ minWidth: "300px", backgroundColor: "#bccaf1b8"}}
         >
           <div className="mb-4 text-center">
             <h4>Registration</h4>

@@ -9,11 +9,12 @@ import {useSelector} from "react-redux";
 import Nav from './components/Nav';
 import Contact from './components/Contact';
 import About from './components/About';
+import './App.css'
 
 function App() {
   const user = useSelector((state)=>state.user.user)
   return (
-    <div>
+    <div className="bodyContainer">
       <BrowserRouter>
           <Nav/>
           <Routes>

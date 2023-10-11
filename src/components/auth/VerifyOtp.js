@@ -47,9 +47,9 @@ const VerifyOtp = () => {
   return (
     <div
       className="container d-flex justify-content-center align-items-center min-vh-100"
-      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)" }}
+      style={{ background: "linear-gradient(to bottom, #cfe9e91a, #f0f0f84d)" }}
     >
-      <div className="p-4" style={{ backgroundColor: "#bccaf136" }}>
+      <div className="p-4" style={{ backgroundColor: "#bccaf1b8" }}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
             <h4 className="mb-3">Verify OTP</h4>
@@ -140,7 +140,7 @@ const VerifyOtp = () => {
               ) : null}
             </div>
             <div className="mb-3 d-grid gap-2">
-              <button type="submit" className="btn btn-outline-success">
+              <button type="submit" className="btn btn-outline-dark">
                 SignIn
               </button>
             </div>

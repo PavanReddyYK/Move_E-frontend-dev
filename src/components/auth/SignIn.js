@@ -58,9 +58,9 @@ const SignIn = () => {
   return (
     <div
       className="container d-flex justify-content-center align-items-center min-vh-100"
-      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)", position:"relative"}}
+      style={{ background: "linear-gradient(to bottom, #cfe9e91a, #f0f0f84d)", position:"relative"}}
     >
-      <div className="p-4" style={{ backgroundColor: "#bccaf136"}}>
+      <div className="p-4" style={{ backgroundColor: "#bccaf1b8"}}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
             <h4 className="mb-3">Login Page</h4>
@@ -109,7 +109,7 @@ const SignIn = () => {
               ) : null}
             </div>
             <div className="mb-3 d-grid gap-2">
-              <button type="submit" className="btn btn-outline-success">
+              <button type="submit" className="btn btn-outline-dark">
                 SignIn
               </button>
             </div>
@@ -129,7 +129,7 @@ const SignIn = () => {
             </div>
             <div className="d-flex justify-content-center align-item-center">
               <button
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-dark"
                 type="submit"
                 onClick={SignUpGoogle}
               >

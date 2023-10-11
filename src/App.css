@@ -1,6 +1,11 @@
 body, html {
     height: 100%;
     margin: 0;
+    width: 100%; /* Set the width of the div to 100% of its container */
+  background-image: url('./images/netflix-bg-img.jpg'); /* Replace 'your-image.jpg' with the URL of your background image */
+  background-size: cover; /* Scale the background image to cover the entire div */
+  background-position: center; /* Center the background image horizontally and vertically */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
 }
 
 .bodyContainer {
