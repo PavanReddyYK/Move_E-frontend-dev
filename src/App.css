@@ -1,0 +1,25 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.bodyHeader {
+    background-color: #e0e0e0;
+    height: auto; /* Auto height based on content */
+}
+
+.bodyContent {
+    background-color: #f0f0f0;
+    flex: 1; /* Fill remaining space */
+}
+
+.bodyFooter {
+    background-color: #e0e0e0;
+    height: auto; /* Auto height based on content */
+}

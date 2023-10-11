@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
-import { verifyOtpSchema } from "../schemas/verifyOtpSchema";
+import { verifyOtpSchema } from "../../schemas/verifyOtpSchema";
 
 const VerifyOtp = () => {
   const { email } = useParams();

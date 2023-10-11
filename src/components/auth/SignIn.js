@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
-import { SignInSchema } from "../schemas/SignInSchema";
+import { SignInSchema } from "../../schemas/SignInSchema";
 import { FcGoogle } from "react-icons/fc";
 
 const initialValues = {
@@ -58,9 +58,9 @@ const SignIn = () => {
   return (
     <div
       className="container d-flex justify-content-center align-items-center min-vh-100"
-      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)" }}
+      style={{ background: "linear-gradient(to bottom, #f8ffff, #f0f0f8)", position:"relative"}}
     >
-      <div className="p-4" style={{ backgroundColor: "#bccaf136" }}>
+      <div className="p-4" style={{ backgroundColor: "#bccaf136"}}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
             <h4 className="mb-3">Login Page</h4>

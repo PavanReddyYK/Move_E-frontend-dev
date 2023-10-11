@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
-import { ForgotPasswordSchema } from "../schemas/ForgotPasswordSchema";
+import { ForgotPasswordSchema } from "../../schemas/ForgotPasswordSchema";
 
 const initialValues = {
   email: "",
@@ -84,7 +84,7 @@ const ForgotPassword = () => {
           </form>
           <div className="">
             <div className="d-flex justify-content-center align-item-center">
-              <Link to="/">Back to SignIn??</Link>
+              <Link to="/auth/signIn">Back to SignIn??</Link>
             </div>
           </div>
         </div>

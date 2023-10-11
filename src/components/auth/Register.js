@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import { SignUpSchema } from "../schemas/SignUpSchema";
+import { SignUpSchema } from "../../schemas/SignUpSchema";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
@@ -252,7 +252,7 @@ const Register = () => {
           <div className="d-grid align-items-center justify-content-center mb-0">
             <div className="text-center">
               Already have an account?{" "}
-              <Link to="/" className="">
+              <Link to="/auth/signIn" className="">
                 SignIn here
               </Link>
               <div className="mb-1">or</div>
