@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 
 import { SignInSchema } from "../../schemas/SignInSchema";
 import { FcGoogle } from "react-icons/fc";
+import { useDispatch } from "react-redux";
+import { setUsers } from "../../store/slice";
 
 const initialValues = {
   email: "",
@@ -13,6 +15,7 @@ const initialValues = {
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -27,7 +30,8 @@ const SignIn = () => {
             }
           )
           .then((res) => {
-            console.log(res.data.message);
+            console.log(res.data);
+            dispatch(setUsers(res.data.user))
             sessionStorage.setItem("token", res.data.token);
             navigate(`/dash/${res.data.token}`);
           })
@@ -63,7 +67,7 @@ const SignIn = () => {
       <div className="p-4" style={{ backgroundColor: "#bccaf1b8"}}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
-            <h4 className="mb-3">Login Page</h4>
+            <h4 className="mb-3">Login</h4>
           </div>
           <form onSubmit={handleSubmit}>
             {/* ---------------------------------EMAIL-------------------- */}

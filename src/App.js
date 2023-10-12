@@ -12,7 +12,8 @@ import About from './components/About';
 import './App.css'
 
 function App() {
-  const user = useSelector((state)=>state.user.user)
+  const user = useSelector((state)=>state.movieApp.user)
+  console.log("user from app: ", user.email?user.email:"not found")
   return (
     <div className="bodyContainer">
       <BrowserRouter>

@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa";
 
 const Nav = () => {
   const navigate = useNavigate()
-  const user = useSelector((state)=>state.user.user)
+  const user = useSelector((state)=>state.movieApp.user)
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{position:'absolute',backgroundColor:"#0a1f64d9"}}>
