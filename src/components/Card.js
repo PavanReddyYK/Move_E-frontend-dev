@@ -1,25 +1,30 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
 const Card = () => {
+  const movies = useSelector(state=>state.movieApp.movies)
 
   return (
     <div className="movie page">
       <div className="grid grid-4-col">
-        {/* {movies.map((movie) => {
-          const {id, tital,poster} = movie
+        {movies.map((movie) => {
+          const {_id, title, poster} = movie
+          console.log("iddd: "+ _id,"titleeee: "+ title)
           return (
-            <NavLink to={movie.id}>
+            <NavLink to ={`/movie/${_id}`} key={_id}>
+              <div className="d-flex flex-wrap">
               <div className="card">
                 <div className="card-info">
-                  <h2>{movie.title}</h2> 
-                  <img src={poster} alt={id}/>
+                  <h4>{title}</h4> 
+                  <img src={poster} alt={_id} style={{width:"200px"}}/>
                 </div>
+              </div>
               </div>
             </NavLink>
           );
-        })} */}
+        })}
       </div>
     </div>
 

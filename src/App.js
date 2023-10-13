@@ -10,6 +10,7 @@ import Nav from './components/Nav';
 import Contact from './components/Contact';
 import About from './components/About';
 import './App.css'
+import Movie from "./components/Movie";
 
 function App() {
   const user = useSelector((state)=>state.movieApp.user)
@@ -23,6 +24,7 @@ function App() {
               <Route path="/:token" element={<Dash/>}/>:
               <Route path="/" element={<Dash/>}/>
               }
+              <Route path="/movie/:id" element={<Movie />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
               <Route path="/auth/signIn" element={<SignIn />} />

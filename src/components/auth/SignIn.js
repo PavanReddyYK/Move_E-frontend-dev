@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import { SignInSchema } from "../../schemas/SignInSchema";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { setUsers } from "../../store/slice";
+import { setUser } from "../../store/slice";
 
 const initialValues = {
   email: "",
@@ -31,9 +31,8 @@ const SignIn = () => {
           )
           .then((res) => {
             console.log(res.data);
-            dispatch(setUsers(res.data.user))
-            sessionStorage.setItem("token", res.data.token);
-            navigate(`/dash/${res.data.token}`);
+            dispatch(setUser(res.data.user))
+            navigate(`/${res.data.token}`);
           })
           .catch((err) => {
             console.error(
