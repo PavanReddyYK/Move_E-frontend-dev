@@ -11,7 +11,7 @@ const Nav = () => {
   const user = useSelector((state)=>state.movieApp.user)
   return (
     <div>
-      <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{position:'absolute',backgroundColor:"#0a1f64d9"}}>
+      <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{backgroundColor:"#0a1f64d9"}}>
         <div className="container-fluid">
           <NavLink to="/" className="navbar-brand text-light" aria-current="page">
             Move-E <CgPlayButtonR/>
