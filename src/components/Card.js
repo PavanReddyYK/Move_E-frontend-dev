@@ -12,7 +12,6 @@ const Card = () => {
         {movies.map((movie) => {
           let { _id, title, poster } = movie;
           title = title.length > 10 ? title.substring(0, 12) + "..." : title;
-          console.log("iddd: " + _id, "titleeee: " + title);
           return (
             <div className="col-lg-3 col-md-4 col-sm-6 my-3" key={_id}>
               <NavLink to={`/movie/${_id}`} className="hovered-link">

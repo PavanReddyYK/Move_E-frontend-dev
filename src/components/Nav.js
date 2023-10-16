@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 // import { FaClapperboard,FaCentos } from "react-icons/fa6";
@@ -9,6 +9,11 @@ import { FaUser } from "react-icons/fa";
 const Nav = () => {
   const navigate = useNavigate()
   const user = useSelector((state)=>state.movieApp.user)
+  const [showUserDetails, setShowUserDetails] = useState(false);
+
+  const handleUserIconClick = () => {
+    setShowUserDetails(!showUserDetails);
+  };
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{backgroundColor:"#0a1f64d9"}}>
@@ -56,12 +61,41 @@ const Nav = () => {
                 <FaSearch />
               </button>
             </form>
-            <div>
-              {user.name?<div><FaUser/></div>:
+            {/* <div>
+              {user.name?<button className="btn btn-link"><h5 className="text-light m-0"><FaUser/></h5></button>:
               <button className="btn btn-outline-light" onClick={()=>navigate('/auth/signIn')}>
                 SignIn
                 </button>}
-            </div>
+            </div> */}
+            <div>
+          {user.name ? (
+            <div className="position-relative">
+            <button className="btn btn-link user-icon">
+              <h5 className="text-light m-0">
+                <FaUser />
+              </h5>
+            </button>
+            {user.name && (
+              <div className="user-details">
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <button
+                  className="btn btn-outline-dark"
+                  onClick={() => {
+                    // Handle logout logic here
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+          ) : (
+            <button className="btn btn-outline-light" onClick={() => navigate('/auth/signIn')}>
+              SignIn
+            </button>
+          )}
+        </div>
           </div>
         </div>
       </nav>

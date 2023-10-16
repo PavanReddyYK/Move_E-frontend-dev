@@ -67,3 +67,21 @@ body, html {
     margin: 0 !important;
     background-color: #5c5c5c91
   }
+
+  /* Add this CSS to your stylesheet or in a <style> tag in your component */
+  
+  .user-icon:hover + .user-details {
+    display: block;
+  }
+.user-details:hover {
+    display: block;
+  }
+.user-details {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 10px;
+  top: 100%;
+  right: 0;
+}
+

@@ -1,16 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BsFillBookmarkCheckFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Movie = () => {
   const { id } = useParams();
   let [movie, setMovie] = useState({title:false});
+  const user = useSelector(state=>state.movieApp.user)
 
   useEffect(() => {
     axios
       .get(`http://localhost:5343/v1/movie/fetchMovieById/${id}`)
       .then((response) => {
-        console.log(response.data.movieData)
+        // console.log(response.data.movieData)
         setMovie(response.data.movieData);
       })
       .catch((error) => {
@@ -18,12 +21,32 @@ const Movie = () => {
       });
   }, [id]);
 
+  const handleWatchList=()=>{
+    if(!user.name){
+      alert('Please login to add this movie in your watch list')
+      return;
+      }
+      else{
+        axios.post('http://localhost:5343/v1/movie/addMovieToWatchlist',{movieId:id,email:user.email})
+        .then((response)=>{
+          alert('Added to Watch List Successfully');
+        })
+        .catch((error)=>{
+          console.log('Error adding the movie to watch list',error.response.data);
+          alert(error.response.message)
+        })
+      }
+  }
+
   return (
     <div className="container bg-dark" style={{ marginTop: "56px" }}>
       {movie.title?(
       <div className="row">
         <div className="col-lg-4 col-md-4 col-sm-4 my-4">
           <img src={movie.poster} style={{ width: "100%" }} alt="img" />
+          <div className="container">
+            <button className="btn btn-outline-light" type="button" onClick={()=>handleWatchList()}>Watchlist <BsFillBookmarkCheckFill/></button>
+          </div>
         </div>
         <div className="col-lg-8 col-md-8 col-sm-8">
           <div
