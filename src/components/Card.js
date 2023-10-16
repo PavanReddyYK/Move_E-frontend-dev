@@ -15,11 +15,11 @@ const Card = () => {
           console.log("iddd: " + _id, "titleeee: " + title);
           return (
             <div className="col-lg-3 col-md-4 col-sm-6 my-3" key={_id}>
-              <NavLink to={`/movie/${_id}`}>
+              <NavLink to={`/movie/${_id}`} className="hovered-link">
                 <div className="card">
                   <div className="card-info text-center">
                     <h4 className="text-decoration-none">{title}</h4>
-                    <img src={poster} alt={_id} style={{ width: "100%" }} />
+                    <img className="p-1" src={poster} alt={_id} style={{ width: "100%" }} />
                   </div>
                 </div>
               </NavLink>

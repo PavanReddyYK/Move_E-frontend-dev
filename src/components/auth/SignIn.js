@@ -7,6 +7,7 @@ import { SignInSchema } from "../../schemas/SignInSchema";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slice";
+import useFullPageLoader from "../../helper/useFullPageLoader";
 
 const initialValues = {
   email: "",
@@ -16,11 +17,14 @@ const initialValues = {
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
+const [loader, showLoader, hideLoader] = useFullPageLoader()
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema: SignInSchema,
       onSubmit: (values, action) => {
+        showLoader()
         axios
           .post(
             `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/logInUser`,
@@ -32,6 +36,7 @@ const SignIn = () => {
           .then((res) => {
             console.log(res.data);
             dispatch(setUser(res.data.user))
+            hideLoader()
             navigate(`/${res.data.token}`);
           })
           .catch((err) => {

@@ -50,4 +50,20 @@ body, html {
     height: 100%;
     object-fit: cover; /* This ensures the image covers the container */
   }
+  .hovered-link {
+    transition: all 0.5s; /* Increase the duration to slow down the initial hover effect */
+  }
   
+  .hovered-link:hover div {
+    transition: all 0.5s; /* Increase the duration for the hover effect */
+    transform: scale(1.02); /* Enlarge the image */
+    filter: brightness(1.1); /* Adjust brightness to make it stand out more */
+    color: #161df5ea; /* Change font color to your desired color */
+    box-shadow: 0 0 10px rgba(214, 214, 12, 0.319); /* Add a shadow effect */
+  }
+  
+  .card{
+    border: none!important;
+    margin: 0 !important;
+    background-color: #5c5c5c91
+  }
