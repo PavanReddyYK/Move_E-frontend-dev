@@ -1,9 +1,11 @@
 import React from "react";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../schemas/SignUpSchema";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slice";
 
 const initialValues = {
   name: "",
@@ -16,6 +18,8 @@ const initialValues = {
 };
 
 const Register = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
@@ -35,7 +39,10 @@ const Register = () => {
             payload
           )
           .then((res) => {
-            console.log("🚀Register.js:40 ~ .then ~ res:", res.data);
+            console.log("🚀Register.js:40 ~ .then ~ res:", res.data.user);
+            sessionStorage.setItem('token',res.data.token)
+            dispatch(setUser(res.data.user))
+            navigate(`/${res.data.token}`)
           })
           .catch((err) => {
             console.log("Error Response:---", err.response);

@@ -20,6 +20,7 @@ const userSlice = createSlice({
 })
 
 export const {setUser, setMovies} = userSlice.actions;
+
 export const loadMovies =()=> async (dispatch) => {
     try {
         const response = await axios.get(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/movie/fetchAllMovies`);

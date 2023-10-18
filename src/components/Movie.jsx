@@ -11,7 +11,7 @@ const Movie = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5343/v1/movie/fetchMovieById/${id}`)
+      .get(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/movie/fetchMovieById/${id}`)
       .then((response) => {
         // console.log(response.data.movieData)
         setMovie(response.data.movieData);
@@ -27,7 +27,11 @@ const Movie = () => {
       return;
       }
       else{
-        axios.post('http://localhost:5343/v1/movie/addMovieToWatchlist',{movieId:id,email:user.email})
+        axios.post(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/movie/addMovieToWatchlist`,
+        {movieId:id},
+        {
+          headers:{Authorization: sessionStorage.getItem('token')}
+        })
         .then((response)=>{
           alert('Added to Watch List Successfully');
         })
@@ -45,7 +49,7 @@ const Movie = () => {
         <div className="col-lg-4 col-md-4 col-sm-4 my-4">
           <img src={movie.poster} style={{ width: "100%" }} alt="img" />
           <div className="container">
-            <button className="btn btn-outline-light" type="button" onClick={()=>handleWatchList()}>Watchlist <BsFillBookmarkCheckFill/></button>
+            <button className="btn btn-outline-light mt-2" type="button" onClick={()=>handleWatchList()}>Watchlist <BsFillBookmarkCheckFill/></button>
           </div>
         </div>
         <div className="col-lg-8 col-md-8 col-sm-8">

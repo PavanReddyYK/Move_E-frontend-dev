@@ -8,6 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slice";
 import useFullPageLoader from "../../helper/useFullPageLoader";
+import { date } from "yup";
 
 const initialValues = {
   email: "",
@@ -37,6 +38,7 @@ const [loader, showLoader, hideLoader] = useFullPageLoader()
             console.log(res.data);
             dispatch(setUser(res.data.user))
             hideLoader()
+            sessionStorage.setItem('token', res.data.token)
             navigate(`/${res.data.token}`);
           })
           .catch((err) => {

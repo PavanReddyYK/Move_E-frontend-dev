@@ -1,22 +1,21 @@
 body, html {
     height: 100%;
     margin: 0;
-    width: 100%; /* Set the width of the div to 100% of its container */
-  background-image: url('./images/netflix-bg-img.jpg'); /* Replace 'your-image.jpg' with the URL of your background image */
-  background-size: cover; /* Scale the background image to cover the entire div */
-  background-position: center; /* Center the background image horizontally and vertically */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
-  background-attachment: fixed; /*background image stay in place while the content scrolls */
+    width: 100%;
+  background-image: url('./images/netflix-bg-img.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .fixed-top {
-    position: fixed;   /* Fix the navbar to the top */
-    top: 0;            /* Place it at the top of the viewport */
-    width: 100%;       /* Take up the full width of the viewport */
-    z-index: 1000;     /* Adjust the z-index as needed to ensure it's above other elements */
-    background-color: #0a1f64d9;  /* Your background color */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #0a1f64d9;
   }
-  
 
 .bodyContainer {
     display: flex;
@@ -26,7 +25,7 @@ body, html {
 
 .bodyHeader {
     background-color: #e0e0e0;
-    height: auto; /* Auto height based on content */
+    height: auto;
 }
 
 .bodyContent {
@@ -36,13 +35,13 @@ body, html {
 
 .bodyFooter {
     background-color: #e0e0e0;
-    height: auto; /* Auto height based on content */
+    height: auto;
 }
 
 
 .image-container {
-    height: 200px; /* Set the desired height */
-    overflow: hidden; /* Ensure the image doesn't overflow the container */
+    height: 200px;
+    overflow: hidden;
   }
   
   .image-container img {
@@ -51,25 +50,23 @@ body, html {
     object-fit: cover; /* This ensures the image covers the container */
   }
   .hovered-link {
-    transition: all 0.5s; /* Increase the duration to slow down the initial hover effect */
+    transition: all 0.5s;
   }
   
   .hovered-link:hover div {
-    transition: all 0.5s; /* Increase the duration for the hover effect */
-    transform: scale(1.02); /* Enlarge the image */
-    filter: brightness(1.1); /* Adjust brightness to make it stand out more */
-    color: #161df5ea; /* Change font color to your desired color */
-    box-shadow: 0 0 10px rgba(214, 214, 12, 0.319); /* Add a shadow effect */
+    transition: all 0.4s;
+    transform: scale(1.02);
+    filter: brightness(1.1);
+    color: #161df5ea;
+    box-shadow: 0 0 10px rgba(214, 214, 12, 0.319);
   }
-  
+
   .card{
     border: none!important;
     margin: 0 !important;
     background-color: #5c5c5c91
   }
 
-  /* Add this CSS to your stylesheet or in a <style> tag in your component */
-  
   .user-icon:hover + .user-details {
     display: block;
   }
@@ -79,7 +76,7 @@ body, html {
 .user-details {
   display: none;
   position: absolute;
-  background-color: #fff;
+  background-color: #bebdbd;
   padding: 10px;
   top: 100%;
   right: 0;

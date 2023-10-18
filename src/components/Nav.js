@@ -3,17 +3,35 @@ import { FaSearch } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 // import { FaClapperboard,FaCentos } from "react-icons/fa6";
 import { CgPlayButtonR } from "react-icons/cg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
+import axios from "axios";
+import { setUser } from "../store/slice";
 
 const Nav = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const user = useSelector((state)=>state.movieApp.user)
-  const [showUserDetails, setShowUserDetails] = useState(false);
+  const token = user.name?sessionStorage.getItem('token'):"";
 
-  const handleUserIconClick = () => {
-    setShowUserDetails(!showUserDetails);
+  const handleLogout = () => {
+    axios.post(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/logoutUser`,{},{
+      headers : {Authorization: sessionStorage.getItem('token')}
+
+    })
+    .then((res)=>{
+      console.log(res.data.message)
+      sessionStorage.removeItem('token')
+      dispatch(setUser(""))
+      navigate('/')
+    })
+    .catch((err)=>{
+      console.log("Error in Logging out",
+                  err.response.statusText,
+                  err.response.data);
+    })
   };
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{backgroundColor:"#0a1f64d9"}}>
@@ -35,9 +53,13 @@ const Nav = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
+                {token?
+                <NavLink to={`/${token}`} className="nav-link text-light" aria-current="page">
+                  Home
+                </NavLink>:
                 <NavLink to="/" className="nav-link text-light" aria-current="page">
                   Home
-                  </NavLink>
+                </NavLink>}
               </li>
               <li className="nav-item">
                 <NavLink to="/contact" className="nav-link text-light" aria-current="page">
@@ -61,12 +83,6 @@ const Nav = () => {
                 <FaSearch />
               </button>
             </form>
-            {/* <div>
-              {user.name?<button className="btn btn-link"><h5 className="text-light m-0"><FaUser/></h5></button>:
-              <button className="btn btn-outline-light" onClick={()=>navigate('/auth/signIn')}>
-                SignIn
-                </button>}
-            </div> */}
             <div>
           {user.name ? (
             <div className="position-relative">
@@ -76,17 +92,19 @@ const Nav = () => {
               </h5>
             </button>
             {user.name && (
-              <div className="user-details">
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
+              <div className="user-details rounded">
+                <p>{user.name}</p>
+                <p>{user.email}</p>
+                <div className="d-grid">
                 <button
-                  className="btn btn-outline-dark"
+                  className="btn btn-outline-dark mx-4"
                   onClick={() => {
-                    // Handle logout logic here
+                    handleLogout()
                   }}
                 >
                   Logout
                 </button>
+                </div>
               </div>
             )}
           </div>
