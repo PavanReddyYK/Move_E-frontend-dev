@@ -3,11 +3,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BsFillBookmarkCheckFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Movie = () => {
   const { id } = useParams();
   let [movie, setMovie] = useState({title:false});
   const user = useSelector(state=>state.movieApp.user)
+
+const sweetAlertHandler = (msg)=>{
+  const mySwal = withReactContent(Swal)
+  mySwal.fire({
+    title: msg,
+    icon: 'success',
+  });
+}
 
   useEffect(() => {
     axios
@@ -23,7 +33,7 @@ const Movie = () => {
 
   const handleWatchList=()=>{
     if(!user.name){
-      alert('Please login to add this movie in your watch list')
+      sweetAlertHandler("Login to watchList movies")
       return;
       }
       else{
@@ -33,7 +43,7 @@ const Movie = () => {
           headers:{Authorization: sessionStorage.getItem('token')}
         })
         .then((response)=>{
-          alert('Added to Watch List Successfully');
+          sweetAlertHandler("Added successfully")
         })
         .catch((error)=>{
           console.log('Error adding the movie to watch list',error.response.data);
@@ -62,7 +72,7 @@ const Movie = () => {
             <p><b>IMDB : </b>{movie.imdb.rating+"/10 " +"  ("+ movie.imdb.votes+" votes)"}</p>
             <p><b>Genre : </b>{movie.genres.toString()}</p>
             <p><b>Runtime : </b>{movie.runtime+"m"}</p>
-            <p><b>Cast : </b>{movie.cast.toString()}</p>
+            <p><b>Castttt : </b>{movie.cast.toString()}</p>
             <p><b>plot : </b>{movie.plot}</p>
             <p><b>Director : </b>{movie.directors}</p>
             <p><b>Writers : </b>{movie.writers.toString()}</p>
