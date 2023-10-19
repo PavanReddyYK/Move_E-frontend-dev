@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-
-import { SignInSchema } from "../../schemas/SignInSchema";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+
+import { SignInSchema } from "../../schemas/SignInSchema";
 import { setUser } from "../../store/slice";
 import useFullPageLoader from "../../helper/useFullPageLoader";
-import { date } from "yup";
 
 const initialValues = {
   email: "",
@@ -19,6 +20,14 @@ const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 const [loader, showLoader, hideLoader] = useFullPageLoader()
+
+const sweetAlertHandler = (title,iconStatus)=>{
+  const mySwal = withReactContent(Swal)
+  mySwal.fire({
+    title: title,
+    icon: iconStatus,
+  })
+}
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -38,15 +47,17 @@ const [loader, showLoader, hideLoader] = useFullPageLoader()
             console.log(res.data);
             dispatch(setUser(res.data.user))
             hideLoader()
+            sweetAlertHandler("SignIn Successful","success")
             sessionStorage.setItem('token', res.data.token)
+
             navigate(`/${res.data.token}`);
           })
           .catch((err) => {
             console.error(
               "Response Error!!!",
-              err.response.statusText,
-              err.response.data
+              err
             );
+            sweetAlertHandler("SignIn failed","error")
           });
         action.resetForm();
       },

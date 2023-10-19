@@ -11,11 +11,11 @@ const Movie = () => {
   let [movie, setMovie] = useState({title:false});
   const user = useSelector(state=>state.movieApp.user)
 
-const sweetAlertHandler = (msg)=>{
+const sweetAlertHandler = (msg,iconStatus)=>{    
   const mySwal = withReactContent(Swal)
   mySwal.fire({
     title: msg,
-    icon: 'success',
+    icon: iconStatus,
   });
 }
 
@@ -33,7 +33,7 @@ const sweetAlertHandler = (msg)=>{
 
   const handleWatchList=()=>{
     if(!user.name){
-      sweetAlertHandler("Login to watchList movies")
+      sweetAlertHandler("SignIn to watchList movies",'warning')
       return;
       }
       else{
@@ -43,7 +43,7 @@ const sweetAlertHandler = (msg)=>{
           headers:{Authorization: sessionStorage.getItem('token')}
         })
         .then((response)=>{
-          sweetAlertHandler("Added successfully")
+          sweetAlertHandler("Added successfully",'success')
         })
         .catch((error)=>{
           console.log('Error adding the movie to watch list',error.response.data);
@@ -72,7 +72,7 @@ const sweetAlertHandler = (msg)=>{
             <p><b>IMDB : </b>{movie.imdb.rating+"/10 " +"  ("+ movie.imdb.votes+" votes)"}</p>
             <p><b>Genre : </b>{movie.genres.toString()}</p>
             <p><b>Runtime : </b>{movie.runtime+"m"}</p>
-            <p><b>Castttt : </b>{movie.cast.toString()}</p>
+            <p><b>Cast : </b>{movie.cast.toString()}</p>
             <p><b>plot : </b>{movie.plot}</p>
             <p><b>Director : </b>{movie.directors}</p>
             <p><b>Writers : </b>{movie.writers.toString()}</p>

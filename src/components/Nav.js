@@ -7,12 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
 import { setUser } from "../store/slice";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 const Nav = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector((state)=>state.movieApp.user)
   const token = user.name?sessionStorage.getItem('token'):"";
+
+  const sweetAlertHandler = (title, iconStatus) =>{
+    const mySwal = withReactContent(Swal) 
+    mySwal.fire({
+      title:title,
+      icon:iconStatus,
+    })
+  }
 
   const handleLogout = () => {
     axios.post(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/logoutUser`,{},{
@@ -23,12 +33,15 @@ const Nav = () => {
       console.log(res.data.message)
       sessionStorage.removeItem('token')
       dispatch(setUser(""))
+      sweetAlertHandler()
+      sweetAlertHandler("Logged out successfully","success")
       navigate('/')
     })
     .catch((err)=>{
       console.log("Error in Logging out",
                   err.response.statusText,
                   err.response.data);
+      sweetAlertHandler("couldn't logout","warning")
     })
   };
 
