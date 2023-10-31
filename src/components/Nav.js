@@ -45,6 +45,10 @@ const Nav = () => {
     })
   };
 
+  const handleSearch = ()=>{
+    
+  }
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{backgroundColor:"#0a1f64d9"}}>
@@ -89,10 +93,10 @@ const Nav = () => {
               <input
                 className="form-control me-1"
                 type="search"
-                placeholder="Search"
+                placeholder="Search a Movie"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-light me-5" type="submit">
+              <button className="btn btn-outline-light me-5" type="button" onClick={handleSearch}>
                 <FaSearch />
               </button>
             </form>
