@@ -6,7 +6,7 @@ import { CgPlayButtonR } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
-import { setUser } from "../store/slice";
+import { setSearchValue, setUser } from "../store/slice";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
@@ -45,8 +45,11 @@ const Nav = () => {
     })
   };
 
-  const handleSearch = ()=>{
-    
+  const handleSearch = (e)=>{
+    let searchValue = e.target.value
+    if(searchValue.length>2){
+      dispatch(setSearchValue(searchValue))
+    }
   }
 
   return (
@@ -91,14 +94,15 @@ const Nav = () => {
             </ul>
             <form className="d-flex" role="search">
               <input
-                className="form-control me-1"
+                className="form-control me-5"
                 type="search"
                 placeholder="Search a Movie"
                 aria-label="Search"
+                onChange={handleSearch}
               />
-              <button className="btn btn-outline-light me-5" type="button" onClick={handleSearch}>
+              {/* <button className="btn btn-outline-light me-5" type="button" onClick={handleSearch}>
                 <FaSearch />
-              </button>
+              </button> */}
             </form>
             <div>
           {user.name ? (

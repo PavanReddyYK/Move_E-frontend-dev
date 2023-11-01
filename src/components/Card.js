@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
 const Card = () => {
-  const movies = useSelector((state) => state.movieApp.movies);
+  let movies = useSelector((state) => state.movieApp.movies);
+  let searchValue = useSelector((state)=>state.movieApp.searchValue)
+  let filteredMovies = [];
+  
+  useEffect(()=>{
+    console.log("🚀 ~ file: Card.js:9 ~ Card ~ searchValue:", searchValue)
+    filteredMovies = movies.filter((movie)=>movie.title.substring(0,searchValue.length).toLowerCase()===searchValue.toLowerCase())
+    console.log(filteredMovies.length)
+    movies =  filteredMovies;
+    console.log(movies.length)
+  },[searchValue])
 
   return (
     <div className="movie page container">

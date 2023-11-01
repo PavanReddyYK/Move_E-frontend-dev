@@ -3,7 +3,8 @@ import axios from "axios";
 
 const initialValues = {
     user:{},
-    movies:[]
+    movies:[],
+    searchValue:"",
 }
 
 const userSlice = createSlice({
@@ -15,11 +16,14 @@ const userSlice = createSlice({
         },
         setMovies : (state,{payload})=>{
             state.movies = payload
+        },
+        setSearchValue : (state,{payload})=>{
+            state.searchValue = payload
         }
     }
 })
 
-export const {setUser, setMovies} = userSlice.actions;
+export const {setUser, setMovies, setSearchValue} = userSlice.actions;
 
 export const loadMovies =()=> async (dispatch) => {
     try {
