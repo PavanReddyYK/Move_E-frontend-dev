@@ -3,23 +3,25 @@ import { useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
-const Card = () => {
-  let movies = useSelector((state) => state.movieApp.movies);
-  let searchValue = useSelector((state)=>state.movieApp.searchValue)
-  let filteredMovies = [];
+const Card = (params) => {
+  let movies = params.movies
+  // let movies = useSelector((state) => state.movieApp.movies);
+  // let searchValue = useSelector((state)=>state.movieApp.searchValue)
+  // let filteredMovies = [];
   
-  useEffect(()=>{
-    console.log("🚀 ~ file: Card.js:9 ~ Card ~ searchValue:", searchValue)
-    filteredMovies = movies.filter((movie)=>movie.title.substring(0,searchValue.length).toLowerCase()===searchValue.toLowerCase())
-    console.log(filteredMovies.length)
-    movies =  filteredMovies;
-    console.log(movies.length)
-  },[searchValue])
+  // useEffect(()=>{
+  //   console.log("🚀 ~ file: Card.js:9 ~ Card ~ searchValue:", searchValue)
+  //   filteredMovies = movies.filter((movie)=>movie.title.substring(0,searchValue.length).toLowerCase()===searchValue.toLowerCase())
+  //   console.log(filteredMovies.length)
+  //   movies = filteredMovies;
+  //   console.log(movies.length)
+  // },[searchValue])
 
   return (
     <div className="movie page container">
       <div className="row">
         {movies.map((movie) => {
+        // {movies.filter((movie)=>search===''?movies:movie.title.substring(0,search.length).toLowerCase===search.toLowerCase).map((movie) => {
           let { _id, title, poster } = movie;
           title = title.length > 10 ? title.substring(0, 12) + "..." : title;
           return (
