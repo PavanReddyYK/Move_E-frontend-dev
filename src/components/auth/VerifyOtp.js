@@ -22,7 +22,7 @@ const VerifyOtp = () => {
       onSubmit: (values, action) => {
         axios
           .post(
-            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/verifyOtp`,
+            `${process.env.REACT_APP_DEV_BASE_URL}/user/verifyOtp`,
             {
               email: values.email,
               otp: values.otp,

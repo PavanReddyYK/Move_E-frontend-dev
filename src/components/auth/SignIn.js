@@ -37,7 +37,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
         showLoader()
         axios
           .post(
-            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/logInUser`,
+            `${process.env.REACT_APP_DEV_BASE_URL}/user/logInUser`,
             {
               email: values.email,
               password: values.password,
@@ -66,7 +66,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
   const SignUpGoogle = async () => {
     await axios
       .post(
-        `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/googleSignUp`
+        `${process.env.REACT_APP_DEV_BASE_URL}/user/googleSignUp`
       )
       .then((res) => {
         window.location.href = `${res.data}`;

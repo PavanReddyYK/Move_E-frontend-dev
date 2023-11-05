@@ -21,7 +21,7 @@ const sweetAlertHandler = (msg,iconStatus)=>{
 
   useEffect(() => {
     axios
-      .get(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/movie/fetchMovieById/${id}`)
+      .get(`${process.env.REACT_APP_DEV_BASE_URL}/movie/fetchMovieById/${id}`)
       .then((response) => {
         setMovie(response.data.movieData);
       })
@@ -36,7 +36,7 @@ const sweetAlertHandler = (msg,iconStatus)=>{
       return;
       }
       else{
-        axios.post(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/movie/addMovieToWatchlist`,
+        axios.post(`${process.env.REACT_APP_DEV_BASE_URL}/movie/addMovieToWatchlist`,
         {movieId:id},
         {
           headers:{Authorization: sessionStorage.getItem('token')}

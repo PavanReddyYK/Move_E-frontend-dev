@@ -25,7 +25,7 @@ const Nav = () => {
   }
 
   const handleLogout = () => {
-    axios.post(`http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/logoutUser`,{},{
+    axios.post(`${process.env.REACT_APP_DEV_BASE_URL}/user/logoutUser`,{},{
       headers : {Authorization: sessionStorage.getItem('token')}
 
     })

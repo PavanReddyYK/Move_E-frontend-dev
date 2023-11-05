@@ -19,7 +19,7 @@ const ForgotPassword = () => {
       onSubmit: (values, action) => {
         axios
           .post(
-            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/forgotPassword`,
+            `${process.env.REACT_APP_DEV_BASE_URL}/user/forgotPassword`,
             {
               email: values.email,
             }

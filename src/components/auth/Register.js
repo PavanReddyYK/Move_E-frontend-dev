@@ -35,7 +35,7 @@ const Register = () => {
         };
         await axios
           .post(
-            `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/registerUser`,
+            `${process.env.REACT_APP_DEV_BASE_URL}/user/registerUser`,
             payload
           )
           .then((res) => {
@@ -53,7 +53,7 @@ const Register = () => {
   const SignUpGoogle = async () => {
     await axios
       .post(
-        `http://localhost:${process.env.REACT_APP_DEV_BACKEND_PORT}/v1/user/googleSignUp`
+        `${process.env.REACT_APP_DEV_BASE_URL}/user/googleSignUp`
       )
       .then((res) => {
         window.location.href = `${res.data}`;
