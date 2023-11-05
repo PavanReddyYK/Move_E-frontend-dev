@@ -7,7 +7,7 @@ import useFullPageLoader from "../helper/useFullPageLoader";
 
 const Dash = () => {
   let { token } = useParams();
-  const [loader, showLoader, hideLoader] = useFullPageLoader()
+  // const [loader, showLoader, hideLoader] = useFullPageLoader()
   console.log("🚀 ~ file: Dash.js:7 ~ Dash ~ token:", token)
   sessionStorage.setItem("token", token);
 
@@ -18,9 +18,9 @@ const Dash = () => {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    showLoader()
+    // showLoader()
     dispatch(loadMovies())
-    hideLoader()
+    // hideLoader()
   },[])
 
   useEffect(()=>{
@@ -33,7 +33,7 @@ const Dash = () => {
 
   return (
     <div style={{marginTop:"56px"}}>
-      {loader}
+      {/* {loader} */}
       <Card movies={filteredMovies.length?filteredMovies:movies}/>
     </div>
   );

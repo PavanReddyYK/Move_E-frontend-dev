@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 import { SignInSchema } from "../../schemas/SignInSchema";
 import { setUser } from "../../store/slice";
-import useFullPageLoader from "../../helper/useFullPageLoader";
+// import useFullPageLoader from "../../helper/useFullPageLoader";
 
 const initialValues = {
   email: "",
@@ -19,7 +19,7 @@ const initialValues = {
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-const [loader, showLoader, hideLoader] = useFullPageLoader()
+// const [loader, showLoader, hideLoader] = useFullPageLoader()
 
 const sweetAlertHandler = (title,iconStatus)=>{
   const mySwal = withReactContent(Swal)
@@ -34,7 +34,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
       initialValues,
       validationSchema: SignInSchema,
       onSubmit: (values, action) => {
-        showLoader()
+        // showLoader()
         axios
           .post(
             `${process.env.REACT_APP_DEV_BASE_URL}/user/logInUser`,
@@ -46,7 +46,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
           .then((res) => {
             console.log(res.data);
             dispatch(setUser(res.data.user))
-            hideLoader()
+            // hideLoader()
             sweetAlertHandler("SignIn Successful","success")
             sessionStorage.setItem('token', res.data.token)
 
