@@ -67,10 +67,10 @@ const sweetAlertHandler = (msg,iconStatus)=>{
               color: "white ",
             }}
           >
-            <h3 className="text-center"><strong>{movie.title}</strong>{" ("+movie.year+")"}</h3>
-            <p><b>IMDB : </b>{movie.imdb.rating+"/10 " +"  ("+ movie.imdb.votes+" votes)"}</p>
+            <h3 className="text-center"><strong>{`${movie.title} (${movie.year})`}</strong></h3>
+            <p><b>IMDB : </b>{`${movie.imdb.rating}/10  (${movie.imdb.votes} votes)`}</p>
             <p><b>Genre : </b>{movie.genres.toString()}</p>
-            <p><b>Runtime : </b>{movie.runtime+"m"}</p>
+            <p><b>Runtime : </b>{`${movie.runtime}m`}</p>
             <p><b>Cast : </b>{movie.cast.toString()}</p>
             <p><b>plot : </b>{movie.plot}</p>
             <p><b>Director : </b>{movie.directors}</p>
