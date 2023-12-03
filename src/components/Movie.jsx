@@ -2,14 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BsFillBookmarkCheckFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { MdBookmarkRemove } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { pushToWatchList } from "../store/slice";
 
 const Movie = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   let [movie, setMovie] = useState({title:false});
   const user = useSelector(state=>state.movieApp.user)
+  const watchList = useSelector(state => state.movieApp.watchList)
 
 const sweetAlertHandler = (msg,iconStatus)=>{    
   const mySwal = withReactContent(Swal)
@@ -35,6 +39,9 @@ const sweetAlertHandler = (msg,iconStatus)=>{
       sweetAlertHandler("SignIn to watchList movies",'warning')
       return;
       }
+      else if(watchList.includes(id)){
+        sweetAlertHandler('Already in watchList','info')
+      }
       else{
         axios.post(`${process.env.REACT_APP_DEV_BASE_URL}/movie/addMovieToWatchlist`,
         {movieId:id},
@@ -42,13 +49,21 @@ const sweetAlertHandler = (msg,iconStatus)=>{
           headers:{Authorization: sessionStorage.getItem('token')}
         })
         .then((response)=>{
-          sweetAlertHandler("Added successfully",'success')
+          sweetAlertHandler(response.data.message,'success')
+          dispatch(pushToWatchList(id))
         })
         .catch((error)=>{
           console.log('Error adding the movie to watch list',error.response.data);
           alert(error.response.message)
         })
       }
+  }
+
+  useEffect(()=>{
+  },[watchList])
+
+  const handleRemove =()=> {
+    console.log("remove called")
   }
 
   return (
@@ -58,7 +73,13 @@ const sweetAlertHandler = (msg,iconStatus)=>{
         <div className="col-lg-4 col-md-4 col-sm-4 my-4">
           <img src={movie.poster} style={{ width: "100%" }} alt="img" />
           <div className="container">
-            <button className="btn btn-outline-light mt-2" type="button" onClick={()=>handleWatchList()}>Watchlist <BsFillBookmarkCheckFill/></button>
+            {
+              watchList.includes(id)?
+              <button className="btn btn-outline-light mt-2" type="button" onClick={()=>handleRemove()}>
+                Remove <MdBookmarkRemove/></button>
+              :<button className="btn btn-outline-light mt-2" type="button" onClick={()=>{handleWatchList()}}>
+                Watchlist <BsFillBookmarkCheckFill/></button>
+            }
           </div>
         </div>
         <div className="col-lg-8 col-md-8 col-sm-8">

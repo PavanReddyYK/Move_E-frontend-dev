@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/slice";
+import { loadWatchList, setUser } from "../../store/slice";
 
 const initialValues = {
   name: "",
@@ -42,6 +42,7 @@ const Register = () => {
             console.log("🚀Register.js:40 ~ .then ~ res:", res.data.user);
             sessionStorage.setItem('token',res.data.token)
             dispatch(setUser(res.data.user))
+            dispatch(loadWatchList())
             navigate(`/${res.data.token}`)
           })
           .catch((err) => {

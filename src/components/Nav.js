@@ -27,7 +27,6 @@ const Nav = () => {
   const handleLogout = () => {
     axios.post(`${process.env.REACT_APP_DEV_BASE_URL}/user/logoutUser`,{},{
       headers : {Authorization: sessionStorage.getItem('token')}
-
     })
     .then((res)=>{
       console.log(res.data.message)

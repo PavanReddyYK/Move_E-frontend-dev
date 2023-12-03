@@ -8,7 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
 import { SignInSchema } from "../../schemas/SignInSchema";
-import { setUser } from "../../store/slice";
+import { loadWatchList, setUser } from "../../store/slice";
 // import useFullPageLoader from "../../helper/useFullPageLoader";
 
 const initialValues = {
@@ -45,10 +45,11 @@ const sweetAlertHandler = (title,iconStatus)=>{
           )
           .then((res) => {
             console.log(res.data);
+            sessionStorage.setItem('token', res.data.token)
             dispatch(setUser(res.data.user))
+            dispatch(loadWatchList())
             // hideLoader()
             sweetAlertHandler("SignIn Successful","success")
-            sessionStorage.setItem('token', res.data.token)
 
             navigate(`/${res.data.token}`);
           })
