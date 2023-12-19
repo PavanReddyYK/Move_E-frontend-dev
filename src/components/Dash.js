@@ -22,19 +22,18 @@ const Dash = () => {
     dispatch(loadMovies())
     // hideLoader()
   },[])
+  
+  if(searchValue.length>=2){
+    filteredMovies = movies.filter((movie)=>movie.title.substring(0,searchValue.length).toLowerCase()===searchValue.toLowerCase())
+  }
 
   useEffect(()=>{
-    console.log("🚀 ~ file: Card.js:9 ~ Card ~ searchValue:", searchValue)
-    filteredMovies = movies.filter((movie)=>movie.title.substring(0,searchValue.length).toLowerCase()===searchValue.toLowerCase())
-    console.log(filteredMovies.length)
-    movies = filteredMovies;
-    console.log(movies.length)
   },[searchValue])
 
   return (
     <div style={{marginTop:"56px"}}>
       {/* {loader} */}
-      <Card movies={filteredMovies.length?filteredMovies:movies}/>
+      <Card movies={searchValue.length>2?filteredMovies:movies}/>
     </div>
   );
 };

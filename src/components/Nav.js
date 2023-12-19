@@ -45,10 +45,7 @@ const Nav = () => {
   };
 
   const handleSearch = (e)=>{
-    let searchValue = e.target.value
-    if(searchValue.length>2){
-      dispatch(setSearchValue(searchValue))
-    }
+    dispatch(setSearchValue(e.target.value))
   }
 
   return (
@@ -79,6 +76,11 @@ const Nav = () => {
                 <NavLink to="/" className="nav-link text-light" aria-current="page">
                   Home
                 </NavLink>}
+              </li>
+              <li className="nav-item">
+                <NavLink to="/watchlist/download" className="nav-link text-light" aria-current="page">
+                  Watchlist
+                  </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/contact" className="nav-link text-light" aria-current="page">
