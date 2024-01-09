@@ -107,11 +107,3 @@ const sweetAlertHandler = (msg,iconStatus)=>{
 };
 
 export default Movie;
-
-{/* <div style={{ color: "white" }}>
-  {Object.keys(movie).map((key) => (
-    <h6 key={key}>
-      {key}: {JSON.stringify(movie[key])}
-    </h6>
-  ))}
-</div> */}

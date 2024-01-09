@@ -33,7 +33,7 @@ const Dash = () => {
   return (
     <div style={{marginTop:"56px"}}>
       {/* {loader} */}
-      <Card movies={searchValue.length>2?filteredMovies:movies}/>
+      <Card movies={searchValue.length>2?filteredMovies:movies} searchValue={searchValue}/>
     </div>
   );
 };

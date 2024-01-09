@@ -1,11 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import RotateLoader from "react-spinners/RotateLoader";
+import RiseLoader from "react-spinners/RiseLoader";
+import RingLoader from "react-spinners/RingLoader";
+import BounceLoader from "react-spinners/BounceLoader";
+import ClockLoader from "react-spinners/ClockLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Card = (params) => {
-  let movies = params.movies;
+  let { movies, searchValue } = params;
 
   return (
-    <div className="movie page container">
+    <div className="container">
       <div className="row">
         {movies.length ? (
           movies.map((movie) => {
@@ -29,13 +35,24 @@ const Card = (params) => {
               </div>
             );
           })
-        ) : (
+        ) : searchValue.length >= 2 ? (
           <div className="container d-flex justify-content-center align-items-center min-vh-100">
             <div className="p-4" style={{ backgroundColor: "#bccaf1b8" }}>
               <div>
                 <div className="typing-demo">No Result Found!!</div>
               </div>
             </div>
+          </div>
+        ) : (
+          <div className="d-flex align-items-center justify-content-center vh-100">
+            <RiseLoader
+              color={"#f2eaeadb"}
+              // loading={loading}
+              // cssOverride={override}
+              size={100}
+              // aria-label="Loading Spinner"
+              // data-testid="loader"
+            />
           </div>
         )}
       </div>

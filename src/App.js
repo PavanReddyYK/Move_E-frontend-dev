@@ -7,7 +7,7 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import VerifyOtp from "./components/auth/VerifyOtp";
 import {useSelector} from "react-redux";
 import Nav from './components/Nav';
-import Contact from './components/Contact';
+import Contact from './components/Contact/Contact.jsx';
 import About from './components/About';
 import './App.css'
 import Movie from "./components/Movie";
