@@ -2,10 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import RotateLoader from "react-spinners/RotateLoader";
 import RiseLoader from "react-spinners/RiseLoader";
-import RingLoader from "react-spinners/RingLoader";
-import BounceLoader from "react-spinners/BounceLoader";
+import HashLoader from "react-spinners/HashLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 import ClockLoader from "react-spinners/ClockLoader";
 import MoonLoader from "react-spinners/MoonLoader";
+
 
 const Card = (params) => {
   let { movies, searchValue } = params;
@@ -45,11 +46,11 @@ const Card = (params) => {
           </div>
         ) : (
           <div className="d-flex align-items-center justify-content-center vh-100">
-            <RiseLoader
+            <PacmanLoader
               color={"#f2eaeadb"}
               // loading={loading}
               // cssOverride={override}
-              size={100}
+              size={50}
               // aria-label="Loading Spinner"
               // data-testid="loader"
             />
