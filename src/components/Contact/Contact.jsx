@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import * as Yup from "yup";
+import FormikForm from "./FormikForm";
 
 const Contact = () => {
   const handleReviewSubmit = (values) => {
@@ -19,8 +20,14 @@ const Contact = () => {
       console.log("contact error", error);
     }
   };
-  const handleContactSubmit = () => {};
-  const handleJobSubmit = () => {};
+  const formObjects = {
+    CareerContact:{
+      subject:"CareerContact",
+    },
+    Feedback:{
+      subject:"Feedback",
+    }
+  }
 
   return (
     <>
@@ -49,46 +56,20 @@ const Contact = () => {
             handleBlur,
             handleChange,
             handleSubmit,
-          }) => (
-            <form onSubmit={handleSubmit} style={{ marginTop: "56px" }}>
-              <Row>
-                <Col sm="3">
+          }) => {
+              return (
+                <div className="">
                   <Row>
-                    <label htmlFor="message">message</label>
+                    <Col>
+                      <FormikForm formDetails={formObjects.CareerContact}/>
+                    </Col>
+                    <Col>
+                      <FormikForm formDetails={formObjects.Feedback}/>
+                    </Col>
                   </Row>
-                  <Row>
-                    <textarea
-                      id="message"
-                      name="message"
-                      className="form-control"
-                      error={errors.message && touched.message}
-                      value={values.message}
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      type="text"
-                      rows="8"
-                      placeholder="Enter your message here"
-                    />
-                    {touched.message && errors.message && (
-                      <small>{errors.message}</small>
-                    )}
-                  </Row>
-                  <br />
-                  <br />
-                  <Row>
-                    <label htmlFor="messageEmail">Email</label>
-                  </Row>
-                  <Row>
-                    <input
-                      id="messageEmail"
-                      className="form-control"
-                      name="messageEmail"
-                    />
-                  </Row>
-                </Col>
-              </Row>
-            </form>
-          )}
+                </div>
+              );
+            }}
         </Formik>
       </div>
     </>
