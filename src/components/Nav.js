@@ -1,18 +1,19 @@
 import React from "react";
 // import { FaSearch } from "react-icons/fa";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 // import { FaClapperboard,FaCentos } from "react-icons/fa6";
 import { CgPlayButtonR } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import axios from "axios";
-import { setSearchValue, setUser } from "../store/slice";
+import { setSearchValue, setUser, setWatchList } from "../store/slice";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
 const Nav = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const location = useLocation()
   const user = useSelector((state)=>state.movieApp.user)
   const token = user.name?sessionStorage.getItem('token'):"";
 
@@ -31,7 +32,8 @@ const Nav = () => {
     .then((res)=>{
       console.log(res.data.message)
       sessionStorage.removeItem('token')
-      dispatch(setUser(""))
+      dispatch(setUser({}))
+      dispatch(setWatchList([]))
       sweetAlertHandler()
       sweetAlertHandler("Logged out successfully","success")
       navigate('/')
@@ -70,7 +72,7 @@ const Nav = () => {
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 {token?
-                <NavLink to={`/${token}`} className="nav-link text-light" aria-current="page">
+                <NavLink to={`/${token}`} className="nav-link text-light h5" aria-current="page">
                   Home
                 </NavLink>:
                 <NavLink to="/" className="nav-link text-light" aria-current="page">
@@ -99,13 +101,14 @@ const Nav = () => {
                 type="search"
                 placeholder="Search a Movie"
                 aria-label="Search"
+                disabled = {location.pathname!='/'}
                 onChange={handleSearch}
               />
               {/* <button className="btn btn-outline-light me-5" type="button" onClick={handleSearch}>
                 <FaSearch />
               </button> */}
             </form>
-            <div>
+          <div>
           {user.name ? (
             <div className="position-relative">
             <button className="btn btn-link user-icon">

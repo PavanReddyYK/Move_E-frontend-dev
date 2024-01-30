@@ -44,7 +44,7 @@ const ForgotPassword = () => {
       className="container d-flex justify-content-center align-items-center min-vh-100"
       style={{ background: "linear-gradient(to bottom, #cfe9e91a, #f0f0f84d)" }}
     >
-      <div className="p-4" style={{ backgroundColor: "#bccaf1b8" }}>
+      <div className="p-4 rounded-4" style={{ backgroundColor: "#eaebedb8" }}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
             <h4 className="mb-3">Forgot Password</h4>
@@ -52,7 +52,7 @@ const ForgotPassword = () => {
           <form onSubmit={handleSubmit}>
             {/* ---------------------------------EMAIL-------------------- */}
             <div className="mb-3">
-              <label htmlFor="email" className="form-label d-block">
+              <label htmlFor="email" className="form-label d-block h5">
                 email
               </label>
               <input
@@ -71,11 +71,11 @@ const ForgotPassword = () => {
               ) : null}
             </div>
             <div className="mb-3 d-grid gap-2">
-              <div className="d-flex flex-column text-center">
+              <div className="d-flex flex-column text-center h6">
                 we will send otp to this account
                 <button
                   type="submit"
-                  className="btn btn-outline-dark mt-2"
+                  className="btn btn-outline-dark mt-2 font-weight-normal"
                 >
                   Send OTP
                 </button>
@@ -83,7 +83,7 @@ const ForgotPassword = () => {
             </div>
           </form>
           <div className="">
-            <div className="d-flex justify-content-center align-item-center">
+            <div className="d-flex justify-content-center align-item-center h6">
               <Link to="/auth/signIn">Back to SignIn??</Link>
             </div>
           </div>

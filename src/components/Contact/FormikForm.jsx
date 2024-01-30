@@ -21,6 +21,7 @@ const FormikForm = (props) => {
     };
 
   const initialValues = {
+    userName: "",
     [`${subject}Message`]: "",
     [`${subject}Email`]: "",
   };
@@ -30,9 +31,10 @@ const FormikForm = (props) => {
       const result = axios.post(
         `${process.env.REACT_APP_DEV_BASE_URL}/user/contactMail`,
         {
+            userName:values.userName,
             userMail: values[`${subject}Email`],
             subject,
-            mailContent: values.message,
+            mailContent: values[`${subject}Message`],
         }
       );
       console.log("contact result", result);
@@ -46,6 +48,8 @@ const FormikForm = (props) => {
       <Formik
         initialValues={initialValues}
         validationSchema={Yup.object().shape({
+            userName : Yup.string().min(5,"should be minimum of 5 characters")
+            .required("name is required"),
           [`${subject}Message`]: Yup.string()
             .min(15, "should be minimum of 15 characters")
             .required(headings[`${subject}`].messageError),
@@ -67,20 +71,19 @@ const FormikForm = (props) => {
         }) => {
           return (
             <div>
-              <form onSubmit={(e)=>{handleSubmit(e) 
-                handleReviewSubmit(values)}} style={{ marginTop: "56px" }}>
+              <form onSubmit={(e)=>{handleSubmit(e)}} style={{ marginTop: "56px" }}>
                 <Row className="d-flex justify-content-center align-items-center min-vh-100">
                   <Col
                     sm="3"
                     className="border p-4 rounded-4"
-                    style={{ backgroundColor: "#1215219e", minWidth: "350px" }}
+                    style={{ backgroundColor: "#1215219e", minWidth: "400px" }}
                   >
                     <Row>
                       <h4 className="text-light text-center">{headings[`${subject}`].name}</h4>
                     </Row>
                     <Row>
                       <label
-                        htmlFor={`${subject}Email`}
+                        htmlFor={`userName`}
                         className="text-light h5 mt-3"
                       >
                         Name
@@ -88,18 +91,18 @@ const FormikForm = (props) => {
                     </Row>
                     <Row>
                       <input
-                        id={`${subject}Email`}
+                        id={`userName`}
                         className="form-control"
-                        name={`${subject}Email`}
+                        name={`userName`}
                         placeholder="Enter your email"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values[`${subject}Email`]}
-                        error={errors[`${subject}Email`]}
+                        value={values.userName}
+                        error={errors.userName}
                       />
-                      {touched[`${subject}Email`] &&
-                        errors[`${subject}Email`] && (
-                          <strong className="text-danger bold">{errors[`${subject}Email`]}</strong>
+                      {touched.userName &&
+                        errors.userName && (
+                          <strong className="text-danger bold">{errors.userName}</strong>
                         )}
                     </Row>
 
@@ -159,9 +162,9 @@ const FormikForm = (props) => {
                     <Row>
                       <button
                         type="submit"
-                        className="mt-4 btn btn-outline-secondary"
+                        className="mt-4 btn btn-secondary"
                       >
-                        Send
+                        Send email to developer
                       </button>
                     </Row>
                   </Col>

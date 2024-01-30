@@ -71,11 +71,11 @@ const Register = () => {
     >
       <div className=" d-flex align-items-center justify-content-center min-vh-100">
         <div
-          className=" p-4 m-4"
-          style={{ minWidth: "300px", backgroundColor: "#bccaf1b8"}}
+          className=" p-4 m-2 rounded-4"
+          style={{ minWidth: "200px", backgroundColor: "#eaebedb8"}}
         >
           <div className="mb-4 text-center">
-            <h4>Registration</h4>
+            <h3>Register to our Application</h3>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="d-flex flex-wrap">
@@ -84,7 +84,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="name" className="form-label mb-0">
+                <label htmlFor="name" className="form-label mb-0 h5">
                   Name
                 </label>
                 <input
@@ -107,7 +107,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="email" className="form-label mb-0">
+                <label htmlFor="email" className="form-label mb-0 h5">
                   Email
                 </label>
                 <input
@@ -130,7 +130,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="age" className="form-label mb-0">
+                <label htmlFor="age" className="form-label mb-0 h5">
                   Age
                 </label>
                 <input
@@ -153,7 +153,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="state" className="form-label mb-0">
+                <label htmlFor="state" className="form-label mb-0 h5">
                   State
                 </label>
                 <input
@@ -176,7 +176,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="country" className="form-label mb-0">
+                <label htmlFor="country" className="form-label mb-0 h5">
                   Country
                 </label>
                 <input
@@ -201,7 +201,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="password" className="form-label mb-0">
+                <label htmlFor="password" className="form-label mb-0 h5">
                   Password
                 </label>
                 <input
@@ -226,7 +226,7 @@ const Register = () => {
                 className="input-block mb-2"
                 style={{ width: "350px", margin: "auto" }}
               >
-                <label htmlFor="confirmPassword" className="form-label mb-0">
+                <label htmlFor="confirmPassword" className="form-label mb-0 h5">
                   Confirm Password
                 </label>
                 <input
@@ -258,12 +258,12 @@ const Register = () => {
             </div>
           </form>
           <div className="d-grid align-items-center justify-content-center mb-0">
-            <div className="text-center">
+            <div className="text-center h6">
               Already have an account?{" "}
               <Link to="/auth/signIn" className="">
                 SignIn here
               </Link>
-              <div className="mb-1">or</div>
+              <div className="mb-1 h6">or</div>
             </div>
             <div className="">
               <div className=" d-flex justify-content-center align-item-center">

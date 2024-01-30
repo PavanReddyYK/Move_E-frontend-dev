@@ -82,15 +82,15 @@ const sweetAlertHandler = (title,iconStatus)=>{
       className="container d-flex justify-content-center align-items-center min-vh-100"
       style={{ background: "linear-gradient(to bottom, #cfe9e91a, #f0f0f84d)", position:"relative"}}
     >
-      <div className="p-4" style={{ backgroundColor: "#bccaf1b8"}}>
+      <div className="p-4 rounded-5" style={{ backgroundColor: "#eaebedb8"}}>
         <div className="mb-3" style={{ minWidth: "300px" }}>
           <div className="text-center">
-            <h4 className="mb-3">Login</h4>
+            <h3 className="mb-3">Login</h3>
           </div>
           <form onSubmit={handleSubmit}>
             {/* ---------------------------------EMAIL-------------------- */}
             <div className="mb-3">
-              <label htmlFor="email" className="form-label d-block">
+              <label htmlFor="email" className="form-label d-block h5">
                 email
               </label>
               <input
@@ -110,7 +110,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
             </div>
             {/* ---------------------------------PASSWORD-------------------- */}
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
+              <label htmlFor="password" className="form-label h5">
                 password
               </label>
               <input
@@ -122,7 +122,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
                 value={values.password}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                placeholder="enter pass"
+                placeholder="enter password"
               />
               {errors.password && touched.password ? (
                 <h6 className="form-error text-danger mb-0">
@@ -140,13 +140,13 @@ const sweetAlertHandler = (title,iconStatus)=>{
           <div className="">
             <div className="d-grid  align-items-center justify-content-center mb-0">
               <div className="text-center">
-                <div className="text-center text-decoration-none">
+                <div className="text-center text-decoration-none h6">
                   Don't have an account?{" "}
                   <Link to="/auth/signUp" style={{ color: "#4047f3" }}>
                     SignUp Here!
                   </Link>
                 </div>
-                <div className="mb-1">or</div>
+                <div className="mb-1 h6">or</div>
               </div>
             </div>
             <div className="d-flex justify-content-center align-item-center">
@@ -159,7 +159,7 @@ const sweetAlertHandler = (title,iconStatus)=>{
                 oogle
               </button>
             </div>
-            <div className="d-flex justify-content-center align-item-center">
+            <div className="d-flex justify-content-center align-item-center h6">
               <Link to="/auth/signIn/forgotPassword">forgot Password?</Link>
             </div>
           </div>
