@@ -72,25 +72,25 @@ const Nav = () => {
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 {token?
-                <NavLink to={`/${token}`} className="nav-link text-light h5" aria-current="page">
+                <NavLink to={`/${token}`} className={`nav-link ${location.pathname === `/${token}` ? "text-secondary" : "text-light"}`} aria-current="page">
                   Home
                 </NavLink>:
-                <NavLink to="/" className="nav-link text-light" aria-current="page">
+                <NavLink to="/" className={`nav-link ${location.pathname === "/" ? "text-secondary" : "text-light"}`} aria-current="page">
                   Home
                 </NavLink>}
               </li>
               <li className="nav-item">
-                <NavLink to="/watchlist/download" className="nav-link text-light" aria-current="page">
+                <NavLink to="/watchlist/download" className={`nav-link ${location.pathname === "/watchlist/download" ? "text-secondary" : "text-light"}`} aria-current="page">
                   Watchlist
                   </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/contact" className="nav-link text-light" aria-current="page">
+                <NavLink to="/contact" className={`nav-link ${location.pathname === "/contact" ? "text-secondary" : "text-light"}`} aria-current="page">
                   Contact
                   </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/about" className="nav-link text-light" aria-current="page">
+                <NavLink to="/about" className={`nav-link ${location.pathname === "/about" ? "text-secondary" : "text-light"}`} aria-current="page">
                   About
                   </NavLink>
               </li>
