@@ -1,8 +1,10 @@
 import axios from "axios";
 import { Formik } from "formik";
-import React, { useEffect } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import * as Yup from "yup";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormikForm = (props) => {
     let{formDetails} = props
@@ -26,7 +28,6 @@ const FormikForm = (props) => {
     [`${subject}Email`]: "",
   };
   const handleReviewSubmit = (values) => {
-    console.log("funnnnnnnnnnn called",values)
     try {
       const result = axios.post(
         `${process.env.REACT_APP_DEV_BASE_URL}/user/contactMail`,
@@ -38,6 +39,16 @@ const FormikForm = (props) => {
         }
       );
       console.log("contact result", result);
+      toast('Email sent successfully 💬', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     } catch (error) {
       console.log("contact error", error);
     }
@@ -59,6 +70,7 @@ const FormikForm = (props) => {
         })}
         onSubmit={(values, action) => {
           handleReviewSubmit(values);
+          action.resetForm();
         }}
       >
         {({
@@ -71,6 +83,7 @@ const FormikForm = (props) => {
         }) => {
           return (
             <div>
+              <ToastContainer/>
               <form onSubmit={(e)=>{handleSubmit(e)}} style={{ marginTop: "56px" }}>
                 <Row className="d-flex justify-content-center align-items-center min-vh-100">
                   <Col
