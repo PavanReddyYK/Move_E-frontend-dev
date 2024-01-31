@@ -56,8 +56,8 @@ const Nav = () => {
         <div className="container-fluid">
           <NavLink to="/" className="navbar-brand text-light" aria-current="page">
             Move-E <CgPlayButtonR/>
-            </NavLink>
-          <button
+          </NavLink>
+          {/* <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -67,7 +67,7 @@ const Nav = () => {
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
-          </button>
+          </button> */}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -101,7 +101,7 @@ const Nav = () => {
                 type="search"
                 placeholder="Search a Movie"
                 aria-label="Search"
-                disabled = {location.pathname!='/'}
+                disabled = {location.pathname!=='/'}
                 onChange={handleSearch}
               />
               {/* <button className="btn btn-outline-light me-5" type="button" onClick={handleSearch}>

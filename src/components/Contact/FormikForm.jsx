@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import * as Yup from "yup";
-import { ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const FormikForm = (props) => {
@@ -48,6 +48,7 @@ const FormikForm = (props) => {
         draggable: true,
         progress: undefined,
         theme: "dark",
+        transition: Bounce,
         });
     } catch (error) {
       console.log("contact error", error);
@@ -70,7 +71,7 @@ const FormikForm = (props) => {
         })}
         onSubmit={(values, action) => {
           handleReviewSubmit(values);
-          action.resetForm();
+          // action.resetForm();
         }}
       >
         {({

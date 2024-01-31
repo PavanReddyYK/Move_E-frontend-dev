@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Card from "./Card";
 import { useDispatch, useSelector } from "react-redux";
 import { loadMovies } from "../store/slice";
-import useFullPageLoader from "../helper/useFullPageLoader";
+// import useFullPageLoader from "../helper/useFullPageLoader";
 
 const Dash = () => {
   let { token } = useParams();
