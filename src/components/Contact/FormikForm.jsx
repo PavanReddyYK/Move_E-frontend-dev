@@ -71,7 +71,7 @@ const FormikForm = (props) => {
         })}
         onSubmit={(values, action) => {
           handleReviewSubmit(values);
-          // action.resetForm();
+          action.resetForm();
         }}
       >
         {({

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { FaSearch } from "react-icons/fa";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 // import { FaClapperboard,FaCentos } from "react-icons/fa6";
@@ -15,6 +15,9 @@ const Nav = () => {
   const dispatch = useDispatch()
   const location = useLocation()
   const user = useSelector((state)=>state.movieApp.user)
+
+  const [isDesktop, setIsDesktop] = useState(true);
+
   const token = user.name?sessionStorage.getItem('token'):"";
 
   const sweetAlertHandler = (title, iconStatus) =>{
@@ -50,15 +53,34 @@ const Nav = () => {
     dispatch(setSearchValue(e.target.value))
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      // Update the state based on the window width
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    // Attach the event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Call the handleResize function initially to set the initial state
+    handleResize();
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // The empty dependency array ensures that this effect runs once on component mount
+
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary" style={{backgroundColor:"#0a1f64d9"}}>
         <div className="container-fluid">
-          <NavLink to="/" className="navbar-brand text-light" aria-current="page">
+          <NavLink to="/" className="navbar-brand text-white" aria-current="page">
             Move-E <CgPlayButtonR/>
           </NavLink>
-          {/* <button
-            className="navbar-toggler"
+          <button
+            className="navbar-toggler btn btn-light"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -66,8 +88,8 @@ const Nav = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
-          </button> */}
+            <span className="navbar-toggler-icon bg-light"></span>
+          </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -97,7 +119,7 @@ const Nav = () => {
             </ul>
             <form className="d-flex" role="search">
               <input
-                className="form-control me-5"
+                className={`form-control me-5 ${!isDesktop && 'mb-5'}`}
                 type="search"
                 placeholder="Search a Movie"
                 aria-label="Search"
