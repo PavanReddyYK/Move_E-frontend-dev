@@ -63,7 +63,7 @@ const Watchlist = () => {
   return (
     <div
       className="container d-flex align-items-center justify-content-center min-vh-100"
-      style={{ marginTop: "56px" }}
+      style={{ marginTop: "56px", backgroundColor : '#00000054' }}
     >
       {/* <h1 className="">download</h1>
       <div className="mb-3 d-grid gap-2">
@@ -80,10 +80,10 @@ const Watchlist = () => {
           {watchListedMovies.map((movie) => (
             <li key={movie._id} className="m-3">
               <div className="card text-white">
-                <div className="card-header">
+                <div className="card-header" style={{ backgroundColor : '#0000003b' }}>
                   <h4>{`${movie.title} (${movie.year})`}</h4>
                 </div>
-                <div className="card-body">
+                <div className="card-body" style={{ backgroundColor : '#000000a3' }}>
                   <Row>
                     <Col lg={3}>
                       {/* <div className="col-lg-3 col-md-4 col-sm-6 my-3"> */}
@@ -160,51 +160,6 @@ const Watchlist = () => {
                             </tr>
                           </tbody>
                         </table>
-                        {/* <Row>
-                        <Col lg={2}>
-                        <b className="d-block">IMDB : 
-                        </b>
-                        <b className="d-block">year : </b>
-                        <b className="d-block">genres : </b>
-                        <b className="d-block">genres : </b>
-                        <b className="d-block">directors : </b>
-                        <b className="d-block">plot : </b>
-                        <b className="d-block">languages : </b>
-                        <b className="d-block">cast : </b>
-                        <b className="d-block">runtime : </b>
-                        </Col>
-                        <Col lg={10}>
-                        <p className="text-muted d-inline ms-3">{`(${movie.imdb.votes} votes)`}</p>
-                      <p className="card-text"><b>year : </b>{`${movie.year}`}</p>
-                      <p className="card-text"><b>genres : </b>{`${movie.genres}`}</p>
-                      <p className="card-text"><b>directors : </b>{`${movie.directors}`}</p>
-                      <p className="card-text"><b>plot : </b>{`${movie.plot}`}</p>
-                      <p className="card-text"><b>languages : </b>{`${movie.languages}`}</p>
-                      <p className="card-text"><b>cast : </b>{`${movie.cast}`}</p>
-                      <p className="card-text"><b>runtime : </b>{`${movie.runtime} min`}</p>
-                        </Col>
-                      </Row> */}
-                        {/* <p className="card-text m-0"><b className="me-3">IMDB : 
-                          </b><CircularProgressbar 
-                              value={movie.imdb.rating}  
-                              maxValue={10} 
-                              strokeWidth={12}
-                              text={`${movie.imdb.rating}`}
-                              styles={{
-                                root: { width: '50px' },
-                                path: { stroke: 'orange' }, // Customize the color of the progress bar
-                                text: { fontSize: '33px', fill: 'white' }, // Customize the size and color of the text                      
-                              }}
-                            />
-                      <p className="text-muted d-inline ms-3">{`(${movie.imdb.votes} votes)`}</p></p>
-                      <p className="card-text"><b>year : </b>{`${movie.year}`}</p>
-                      <p className="card-text"><b>genres : </b>{`${movie.genres}`}</p>
-                      <p className="card-text"><b>directors : </b>{`${movie.directors}`}</p>
-                      <p className="card-text"><b>plot : </b>{`${movie.plot}`}</p>
-                      <p className="card-text"><b>languages : </b>{`${movie.languages}`}</p>
-                      <p className="card-text"><b>cast : </b>{`${movie.cast}`}</p>
-                      <p className="card-text"><b>runtime : </b>{`${movie.runtime} min`}</p>
-                      <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
                       </div>
                     </Col>
                   </Row>
@@ -214,7 +169,13 @@ const Watchlist = () => {
           ))}
         </ul>
       ) : (
-        <>No movies to watch</>
+        <div className="container d-flex justify-content-center align-items-center min-vh-100">
+            <div className="p-4" style={{ backgroundColor: "#bccaf1b8" }}>
+              <div>
+                <div className="typing-demo">WatchList Empty!!</div>
+              </div>
+            </div>
+          </div>
       )}
     </div>
   );

@@ -101,11 +101,14 @@ const Nav = () => {
                   Home
                 </NavLink>}
               </li>
-              <li className="nav-item">
-                <NavLink to="/watchlist" className={`nav-link ${location.pathname === "/watchlist" ? "text-secondary" : "text-light"}`} aria-current="page">
-                  Watchlist
-                  </NavLink>
-              </li>
+              {
+                user.name &&
+                <li className="nav-item">
+                  <NavLink to="/watchlist" className={`nav-link ${location.pathname === "/watchlist" ? "text-secondary" : "text-light"}`} aria-current="page">
+                    Watchlist
+                    </NavLink>
+                </li>
+              }
               <li className="nav-item">
                 <NavLink to="/contact" className={`nav-link ${location.pathname === "/contact" ? "text-secondary" : "text-light"}`} aria-current="page">
                   Contact

@@ -11,19 +11,23 @@ const Card = (params) => {
         {movies.length ? (
           movies.map((movie) => {
             let { _id, title, poster } = movie;
-            title = title.length > 12 ? `${title.substring(0, 12)}...` : title;
+            title = title.length > 21 ? `${title.substring(0, 21)}...` : title;
             return (
               <div className="col-lg-3 col-md-4 col-sm-6 my-3" key={_id}>
                 <NavLink to={`/movie/${_id}`} className="hovered-link">
                   <div className="card">
-                    <div className="card-info text-center">
-                      <h4 className="text-decoration-none">{title}</h4>
-                      <img
-                        className="p-1"
-                        src={poster}
-                        alt={_id}
-                        style={{ width: "100%" }}
-                      />
+                    <div className="card-info">
+                      <div className="text-center">
+                        <h4 className="text-decoration-none text-light">{title}</h4>
+                      </div>
+                      <div>
+                        <img
+                          className="p-1"
+                          src={poster}
+                          alt={_id}
+                          style={{ width: "100%" }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </NavLink>

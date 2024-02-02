@@ -34,7 +34,9 @@ function App() {
               <Route path="/auth/signIn/verifyOtp/:email" element={<VerifyOtp/>}/>
               <Route path="/auth/signUp" element={<Register />} />
               <Route path="*" element={<NotFound/>}/>
-              <Route path="/watchlist" element={<Watchlist/>} />
+              {user.email &&
+                <Route path="/watchlist" element={<Watchlist/>} />
+              }
           </Routes>
       </BrowserRouter>
     </div>

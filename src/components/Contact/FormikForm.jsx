@@ -85,7 +85,7 @@ const FormikForm = (props) => {
           return (
             <div>
               <ToastContainer/>
-              <form onSubmit={(e)=>{handleSubmit(e)}} style={{ marginTop: "56px" }}>
+              <form onSubmit={(e)=>{handleSubmit(e)}} >
                 <Row className="d-flex justify-content-center align-items-center min-vh-100">
                   <Col
                     sm="3"
@@ -106,7 +106,7 @@ const FormikForm = (props) => {
                     <Row>
                       <input
                         id={`userName`}
-                        className="form-control"
+                        className="form-control bg-light"
                         name={`userName`}
                         placeholder="Enter your email"
                         onBlur={handleBlur}
@@ -132,7 +132,7 @@ const FormikForm = (props) => {
                     <Row>
                       <input
                         id={`${subject}Email`}
-                        className="form-control"
+                        className="form-control  bg-light"
                         name={`${subject}Email`}
                         placeholder="Enter your email"
                         onBlur={handleBlur}
@@ -157,7 +157,7 @@ const FormikForm = (props) => {
                       <textarea
                         id={`${subject}Message`}
                         name={`${subject}Message`}
-                        className="form-control"
+                        className="form-control  bg-light"
                         aria-invalid={
                           errors[`${subject}Message`] &&
                           touched[`${subject}Message`]
