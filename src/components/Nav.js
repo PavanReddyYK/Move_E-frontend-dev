@@ -102,7 +102,7 @@ const Nav = () => {
                 </NavLink>}
               </li>
               <li className="nav-item">
-                <NavLink to="/watchlist/download" className={`nav-link ${location.pathname === "/watchlist/download" ? "text-secondary" : "text-light"}`} aria-current="page">
+                <NavLink to="/watchlist" className={`nav-link ${location.pathname === "/watchlist" ? "text-secondary" : "text-light"}`} aria-current="page">
                   Watchlist
                   </NavLink>
               </li>
@@ -154,12 +154,18 @@ const Nav = () => {
                 </div>
               </div>
             )}
-          </div>
-          ) : (
-            <button className="btn btn-outline-light" onClick={() => navigate('/auth/signIn')}>
-              SignIn
-            </button>
-          )}
+            </div>
+          ) : 
+            (
+              location.pathname !== '/auth/signIn' ?
+              <button className="btn btn-outline-light" onClick={() => navigate('/auth/signIn')}>
+                SignIn
+              </button>
+              :<button className="btn btn-outline-light" onClick={() => navigate('/auth/signUp')}>
+                SignUp
+              </button>
+            )
+        }
         </div>
           </div>
         </div>

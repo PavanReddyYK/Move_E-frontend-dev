@@ -12,7 +12,7 @@ import About from './components/About';
 import './App.css'
 import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
-// import Watchlist from './components/Watchlist';
+import Watchlist from './components/Watchlist/Watchlist.jsx';
 
 function App() {
   const user = useSelector((state)=>state.movieApp.user)
@@ -34,7 +34,7 @@ function App() {
               <Route path="/auth/signIn/verifyOtp/:email" element={<VerifyOtp/>}/>
               <Route path="/auth/signUp" element={<Register />} />
               <Route path="*" element={<NotFound/>}/>
-              {/* <Route path="/watchlist/download" element={<Watchlist/>} /> */}
+              <Route path="/watchlist" element={<Watchlist/>} />
           </Routes>
       </BrowserRouter>
     </div>
