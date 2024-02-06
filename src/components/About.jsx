@@ -5,15 +5,13 @@ const About = () => {
   return (
     <div
       className="container d-flex justify-content-center align-items-center min-vh-100 h5 text-light"
-      // style={{ background: "linear-gradient(to bottom, #cfe9e91a, #f0f0f13d)", position:"relative"}}
     >
       <div>
         <h2>Welcome to {appName} </h2>
         <p>
           <br/> your go-to platform for movie
-          enthusiasts! Our application allows users to create accounts, curate
-          personalized watchlists, and stay updated with the latest movie
-          releases.
+          enthusiasts! Our application allows users to create accounts, make
+          personalized watchlists.
         </p>
         <p>
           <strong>Key Features:</strong>
@@ -28,7 +26,7 @@ const About = () => {
             </li>
             <li>
               <b>Latest Movies:</b> Explore and discover the latest movie
-              releases with a curated list updated regularly.
+              releases.
             </li>
             <li>
               <b>Feedback and Contact:</b> Share your thoughts! Provide feedback

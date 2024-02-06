@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Card from "./Card";
 import { useDispatch, useSelector } from "react-redux";
-import { loadMovies } from "../store/slice";
+import { loadMovies, setUser } from "../store/slice";
+import axios from "axios";
 // import useFullPageLoader from "../helper/useFullPageLoader";
 
 const Dash = () => {
@@ -17,9 +18,23 @@ const Dash = () => {
 
   const dispatch = useDispatch()
 
+  const fetchUserDetails = ()=> {
+    axios.post(`${process.env.REACT_APP_DEV_BASE_URL}/user/fetchUserDetails`,{ },
+    {headers: {Authorization: sessionStorage.getItem('token')}} 
+    ).then((res)=>{
+      console.log("fetchUserDetails user: ",res.data);
+      dispatch(setUser(res.data.user));
+    }).catch((error)=>{
+      console.log("error in fetchUserDetails through token in URL: ", error);
+    })
+  }
+
   useEffect(()=>{
     // showLoader()
     dispatch(loadMovies())
+    if(token){
+      fetchUserDetails();
+    }
     // hideLoader()
   },[])
   

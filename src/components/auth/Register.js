@@ -39,11 +39,11 @@ const Register = () => {
             payload
           )
           .then((res) => {
-            console.log("🚀Register.js:40 ~ .then ~ res:", res.data.user);
+            console.log("🚀Register.js:40 ~ .then ~ res:", res.data);
             sessionStorage.setItem('token',res.data.token)
             dispatch(setUser(res.data.user))
             dispatch(loadWatchList())
-            navigate(`/${res.data.token}`)
+            navigate(`/${res.data.token}`);
           })
           .catch((err) => {
             console.log("Error Response:---", err.response);

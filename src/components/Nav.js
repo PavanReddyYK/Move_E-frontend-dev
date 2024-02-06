@@ -71,6 +71,8 @@ const Nav = () => {
     };
   }, []); // The empty dependency array ensures that this effect runs once on component mount
 
+  useEffect(()=>{
+  },[user])
 
   return (
     <div>

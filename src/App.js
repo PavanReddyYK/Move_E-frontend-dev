@@ -22,10 +22,10 @@ function App() {
       <BrowserRouter>
           <Nav/>
           <Routes>
-            {user.email?
+            {/* {user.email? */}
               <Route path="/:token" element={<Dash/>}/>:
               <Route path="/" element={<Dash/>}/>
-              }
+              {/* } */}
               <Route path="/movie/:id" element={<Movie />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
