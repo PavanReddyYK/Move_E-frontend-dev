@@ -59,12 +59,33 @@ const sweetAlertHandler = (msg,iconStatus)=>{
       }
   }
 
+  const handleRemove=()=>{
+    if(!user.name){
+      sweetAlertHandler("SignIn to modify watchList",'warning')
+      return;
+      }
+      else if(!watchList.includes(id)){
+        sweetAlertHandler('movie not in watchList','info')
+      }
+      else{
+        axios.post(`${process.env.REACT_APP_DEV_BASE_URL}/movie/removeWatchlist`,
+        {movieId:id},
+        {
+          headers:{Authorization: sessionStorage.getItem('token')}
+        })
+        .then((response)=>{
+          sweetAlertHandler(response.data.message,'success')
+          dispatch(pushToWatchList(id))
+        })
+        .catch((error)=>{
+          console.log('Error removing the movie from watchList',error.response.data);
+          alert(error.response.message)
+        })
+      }
+  }
+
   useEffect(()=>{
   },[watchList])
-
-  const handleRemove =()=> {
-    console.log("remove called")
-  }
 
   return (
     <div className="container bg-dark" style={{ marginTop: "56px" }}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import PacmanLoader from "react-spinners/PacmanLoader";
+import CardSkeleton from "../utils/CardSkeleton";
 
 const Card = (params) => {
   let { movies, searchValue } = params;
@@ -44,10 +45,11 @@ const Card = (params) => {
           </div>
         ) : (
           <div className="d-flex align-items-center justify-content-center vh-100">
-            <PacmanLoader
+            {/* <PacmanLoader
               color={"#f2eaeadb"}
               size={50}
-            />
+            /> */}
+            <CardSkeleton/>
           </div>
         )}
       </div>

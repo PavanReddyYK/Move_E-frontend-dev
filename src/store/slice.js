@@ -22,6 +22,9 @@ const userSlice = createSlice({
         pushToWatchList : (state,{payload})=> {
             state.watchList = [...state.watchList, payload]
         },
+        removeFromWatchList : (state,{payload})=> {
+            state.watchList = state.watchList.filter(item => item.id !== payload.id);
+        },
         setMovies : (state,{payload})=>{
             state.movies = payload
         },
